@@ -1,2 +1,1 @@
-# A-DS
-repository with lab of 3-rd semester. 
+# Algothms and data structures 3-rd semester
