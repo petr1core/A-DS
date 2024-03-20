@@ -1,0 +1,18 @@
+cmake_minimum_required(VERSION 3.5)
+#project(Table)
+
+set(CMAKE_CONFIGURATION_TYPES "Debug;Release" CACHE STRING "Configs" FORCE)
+if(NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE Release)
+endif()
+
+include_directories(BaseTable)
+add_subdirectory(BaseTable)
+
+include_directories(ListTable)
+add_subdirectory(ListTable)
+
+file(GLOB srcs "*.cpp")
+
+#add_executable(${PROJECT_NAME} ${srcs})
+#target_link_libraries(${PROJECT_NAME} gtest)

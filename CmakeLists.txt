@@ -1,0 +1,48 @@
+cmake_minimum_required(VERSION 3.5)
+set(PROJECT_NAME PoliAlgebra)
+project(${PROJECT_NAME})
+
+set(BaseTable BaseTable)
+set(BaseTableTest BaseTableTest)
+set(BaseTableLib BaseTableLib)
+
+set(ListTable ListTable)
+set(ListTableTest ListTableTest)
+set(ListTableLib ListTableLib)
+
+set(Stack Stack)
+set(StackTest StackTest)
+set(StackLib StackLib)
+
+set(List List)
+set(ListTest ListTest)
+set(ListLib ListLib)
+
+set(Postfix Postfix)
+set(PostfixTest PostfixTest)
+set(PostfixLib PostfixLib)
+
+set(Polinom Polinom)
+set(PolinomTest PolinomTest)
+set(PolinomLib PolinomLib)
+
+set(CMAKE_CONFIGURATION_TYPES "Debug;Release" CACHE STRING "Configs" FORCE)
+if(NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE Release)
+endif()
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/gtest)
+add_subdirectory(gtest)
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/SupportingClasses)
+add_subdirectory(SupportingClasses)
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/Table)
+add_subdirectory(Table)
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/Polinom)
+add_subdirectory(Polinom)
+
+#file(GLOB srcs "*.CPP")
+#file(GLOB hrc "*.h")
+#add_executable(${PROJECT_NAME} ${hrc} ${srcs}) 

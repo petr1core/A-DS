@@ -1,0 +1,19 @@
+cmake_minimum_required(VERSION 3.5)
+set(PROJECT_NAME polinom)
+project(${PROJECT_NAME})
+
+set(CMAKE_CONFIGURATION_TYPES "Debug;Release" CACHE STRING "Configs" FORCE)
+if(NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE Release)
+endif()
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/polinomLib)
+add_subdirectory(polinomLib)
+add_subdirectory(polinomTest)
+
+file(GLOB srcs "*.cpp")
+add_executable(${PROJECT_NAME} ${srcs})
+target_link_libraries(${PROJECT_NAME} ${polinomLib} gtest)
+
+
+# polinom

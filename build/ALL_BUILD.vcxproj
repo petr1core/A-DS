@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ResolveNugetPackages>false</ResolveNugetPackages>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{ABF6F5CF-68C1-35BB-90EE-CDF33475989A}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.22000.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>00.ALL_BUILD</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Github\A-DS1\gtest;D:\Github\A-DS1\SupportingClasses;D:\Github\A-DS1\Table;D:\Github\A-DS1\Polinom;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Github\A-DS1\gtest;D:\Github\A-DS1\SupportingClasses;D:\Github\A-DS1\Table;D:\Github\A-DS1\Polinom;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\Github\A-DS1\CmakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule D:/Github/A-DS1/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/Github/A-DS1 -BD:/Github/A-DS1/build --check-stamp-file D:/Github/A-DS1/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\WindowsPaths.cmake;D:\Github\A-DS1\build\CMakeFiles\3.28.0-rc4\CMakeCCompiler.cmake;D:\Github\A-DS1\build\CMakeFiles\3.28.0-rc4\CMakeCXXCompiler.cmake;D:\Github\A-DS1\build\CMakeFiles\3.28.0-rc4\CMakeRCCompiler.cmake;D:\Github\A-DS1\build\CMakeFiles\3.28.0-rc4\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Github\A-DS1\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule D:/Github/A-DS1/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/Github/A-DS1 -BD:/Github/A-DS1/build --check-stamp-file D:/Github/A-DS1/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\WindowsPaths.cmake;D:\Github\A-DS1\build\CMakeFiles\3.28.0-rc4\CMakeCCompiler.cmake;D:\Github\A-DS1\build\CMakeFiles\3.28.0-rc4\CMakeCXXCompiler.cmake;D:\Github\A-DS1\build\CMakeFiles\3.28.0-rc4\CMakeRCCompiler.cmake;D:\Github\A-DS1\build\CMakeFiles\3.28.0-rc4\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Github\A-DS1\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="D:\Github\A-DS1\build\ZERO_CHECK.vcxproj">
+      <Project>{63974F18-6562-36BA-9339-8D161786C1FA}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\Github\A-DS1\build\Table\BaseTable\BaseTable.vcxproj">
+      <Project>{0CBFB072-9226-3FE6-A237-5203A815B3CE}</Project>
+      <Name>BaseTable</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Github\A-DS1\build\Table\BaseTable\BaseTableLib\BaseTableLib.vcxproj">
+      <Project>{81410DEA-B9E7-35D2-A80E-D8F665324780}</Project>
+      <Name>BaseTableLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Github\A-DS1\build\Table\BaseTable\BaseTableTest\BaseTableTest.vcxproj">
+      <Project>{09C411EA-6669-3AF4-9E96-50B51D1CA173}</Project>
+      <Name>BaseTableTest</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Github\A-DS1\build\SupportingClasses\List\List.vcxproj">
+      <Project>{1EA16D78-F169-3C24-B71F-FDE184E8AD32}</Project>
+      <Name>List</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Github\A-DS1\build\SupportingClasses\List\ListLib\ListLib.vcxproj">
+      <Project>{8B0BEFAD-75CE-36F3-A0BD-DA0E73DE7C1C}</Project>
+      <Name>ListLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Github\A-DS1\build\Table\ListTable\ListTable.vcxproj">
+      <Project>{C2C547CE-7E1A-3810-B028-2927B8079E1E}</Project>
+      <Name>ListTable</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Github\A-DS1\build\Table\ListTable\ListTableLib\ListTableLib.vcxproj">
+      <Project>{2F251B85-F543-3B3D-AB10-00C56FA2F6F8}</Project>
+      <Name>ListTableLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Github\A-DS1\build\Table\ListTable\ListTableTest\ListTableTest.vcxproj">
+      <Project>{25EA0EDC-C660-3B4A-90C0-8C7AD9B048E0}</Project>
+      <Name>ListTableTest</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Github\A-DS1\build\SupportingClasses\List\ListTest\ListTest.vcxproj">
+      <Project>{8FA88105-5401-3182-BDF7-B192AE409043}</Project>
+      <Name>ListTest</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Github\A-DS1\build\Polinom\PolinomLib\PolinomLib.vcxproj">
+      <Project>{5C3FE4AF-3A2B-3C53-A33C-C4C5E75B9B46}</Project>
+      <Name>PolinomLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Github\A-DS1\build\Polinom\PolinomTest\PolinomTest.vcxproj">
+      <Project>{0C3CF067-2CD9-3C94-81B2-A0EF5EE55DED}</Project>
+      <Name>PolinomTest</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Github\A-DS1\build\SupportingClasses\Postfix\Postfix.vcxproj">
+      <Project>{E31E3E10-C864-3BE8-8B8E-F89FBDDA50B9}</Project>
+      <Name>Postfix</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Github\A-DS1\build\SupportingClasses\Postfix\PostfixLib\PostfixLib.vcxproj">
+      <Project>{EDCE7606-7556-33A3-BD15-7789FEDBBE7A}</Project>
+      <Name>PostfixLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Github\A-DS1\build\SupportingClasses\Postfix\PostfixTest\PostfixTest.vcxproj">
+      <Project>{2E6230C5-AA8D-3C4F-B4E1-AB89B1CA35C8}</Project>
+      <Name>PostfixTest</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Github\A-DS1\build\SupportingClasses\Stack\Stack.vcxproj">
+      <Project>{A02973A4-1246-38FC-A92E-21CD3FB8E0E5}</Project>
+      <Name>Stack</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Github\A-DS1\build\SupportingClasses\Stack\StackLib\StackLib.vcxproj">
+      <Project>{3EFB609D-35E0-3052-BAF5-7B42ED5F5CB9}</Project>
+      <Name>StackLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Github\A-DS1\build\SupportingClasses\Stack\StackTest\StackTest.vcxproj">
+      <Project>{79622284-77AF-361C-B30C-9C3D18644EDB}</Project>
+      <Name>StackTest</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Github\A-DS1\build\gtest\gtest.vcxproj">
+      <Project>{CA8CEE53-F2CD-3B6C-BA5D-943E46BC04BD}</Project>
+      <Name>gtest</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Github\A-DS1\build\Polinom\polinom.vcxproj">
+      <Project>{92302C3E-BE00-3E2F-9ACE-2CDE3E0307EE}</Project>
+      <Name>polinom</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
