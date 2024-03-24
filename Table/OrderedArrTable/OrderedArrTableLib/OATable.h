@@ -22,7 +22,7 @@ public:
 	int GoNext(void) override;
 
 	Key GetKey(void) const override;
-	Value GetValuePtr(void) const override; s
+	Value GetValuePtr(void) const override;
 };
 
 template<class Key, class Value>
@@ -43,7 +43,7 @@ int OrderedArrTable<Key,Value>::BinSearch(Key _key) const
 		}
 	}
 	return -1;
-}
+} 
 
 template<class Key, class Value>
 Value* OrderedArrTable<Key, Value>::Find(Key _key) 
