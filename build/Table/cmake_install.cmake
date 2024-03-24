@@ -35,7 +35,12 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("D:/Github/A-DS1/build/Table/BaseTable/cmake_install.cmake")
-  include("D:/Github/A-DS1/build/Table/ListTable/cmake_install.cmake")
+  include("D:/Github/A-DS1/build/Table/LinearListTable/cmake_install.cmake")
+  include("D:/Github/A-DS1/build/Table/LinearArrTable/cmake_install.cmake")
+  include("D:/Github/A-DS1/build/Table/OrderedArrTable/cmake_install.cmake")
+  include("D:/Github/A-DS1/build/Table/HashChainTable/cmake_install.cmake")
+  include("D:/Github/A-DS1/build/Table/HashRepeatTable/cmake_install.cmake")
+  include("D:/Github/A-DS1/build/Table/RBTreeTable/cmake_install.cmake")
 
 endif()
 

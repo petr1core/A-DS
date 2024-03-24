@@ -21,7 +21,7 @@
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>10.0.22000.0</WindowsTargetPlatformVersion>
     <Platform>x64</Platform>
-    <ProjectName>00.ALL_BUILD</ProjectName>
+    <ProjectName>ALL_BUILD</ProjectName>
     <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -119,6 +119,54 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{09C411EA-6669-3AF4-9E96-50B51D1CA173}</Project>
       <Name>BaseTableTest</Name>
     </ProjectReference>
+    <ProjectReference Include="D:\Github\A-DS1\build\Table\HashChainTable\HashChainTable.vcxproj">
+      <Project>{99065471-B967-3018-8AB9-0F3156A46678}</Project>
+      <Name>HashChainTable</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Github\A-DS1\build\Table\HashChainTable\HashChainTableLib\HashChainTableLib.vcxproj">
+      <Project>{42E86DA8-5F71-386C-83CD-988A3FC8A802}</Project>
+      <Name>HashChainTableLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Github\A-DS1\build\Table\HashChainTable\HashChainTableTest\HashChainTableTest.vcxproj">
+      <Project>{7F835B54-95D6-3856-BB40-5D8106EC5BF3}</Project>
+      <Name>HashChainTableTest</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Github\A-DS1\build\Table\HashRepeatTable\HashRepeatTable.vcxproj">
+      <Project>{AD14A61F-7907-30B4-8551-4C8315AFBD99}</Project>
+      <Name>HashRepeatTable</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Github\A-DS1\build\Table\HashRepeatTable\HashRepeatTableLib\HashRepeatTableLib.vcxproj">
+      <Project>{09761D0E-9863-3FB0-ADD4-1A7B37897905}</Project>
+      <Name>HashRepeatTableLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Github\A-DS1\build\Table\HashRepeatTable\HashRepeatTableTest\HashRepeatTableTest.vcxproj">
+      <Project>{347CC090-9A9C-307B-8F52-D4D703C6917E}</Project>
+      <Name>HashRepeatTableTest</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Github\A-DS1\build\Table\LinearArrTable\LinearArrLib\LinearArrLib.vcxproj">
+      <Project>{41E99B18-4C4B-39D4-AA95-3C4CECF7B0A2}</Project>
+      <Name>LinearArrLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Github\A-DS1\build\Table\LinearArrTable\LinearArrTable.vcxproj">
+      <Project>{0EA70BDC-841A-3694-B48E-08A61F67AB38}</Project>
+      <Name>LinearArrTable</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Github\A-DS1\build\Table\LinearArrTable\LinearArrTest\LinearArrTest.vcxproj">
+      <Project>{741D682B-17CC-3761-A8B0-A83DC53C0B1A}</Project>
+      <Name>LinearArrTest</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Github\A-DS1\build\Table\LinearListTable\LinearListTable.vcxproj">
+      <Project>{4BEE5920-AF14-38A2-B903-F920C2D4E471}</Project>
+      <Name>LinearListTable</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Github\A-DS1\build\Table\LinearListTable\LinearListTableLib\LinearListTableLib.vcxproj">
+      <Project>{996CEC7D-EA54-30C0-8C74-87F127FE2D3B}</Project>
+      <Name>LinearListTableLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Github\A-DS1\build\Table\LinearListTable\LinearListTableTest\LinearListTableTest.vcxproj">
+      <Project>{FFF35E53-47B8-3491-BD1E-A7A8DD96BA57}</Project>
+      <Name>LinearListTableTest</Name>
+    </ProjectReference>
     <ProjectReference Include="D:\Github\A-DS1\build\SupportingClasses\List\List.vcxproj">
       <Project>{1EA16D78-F169-3C24-B71F-FDE184E8AD32}</Project>
       <Name>List</Name>
@@ -127,21 +175,21 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{8B0BEFAD-75CE-36F3-A0BD-DA0E73DE7C1C}</Project>
       <Name>ListLib</Name>
     </ProjectReference>
-    <ProjectReference Include="D:\Github\A-DS1\build\Table\ListTable\ListTable.vcxproj">
-      <Project>{C2C547CE-7E1A-3810-B028-2927B8079E1E}</Project>
-      <Name>ListTable</Name>
-    </ProjectReference>
-    <ProjectReference Include="D:\Github\A-DS1\build\Table\ListTable\ListTableLib\ListTableLib.vcxproj">
-      <Project>{2F251B85-F543-3B3D-AB10-00C56FA2F6F8}</Project>
-      <Name>ListTableLib</Name>
-    </ProjectReference>
-    <ProjectReference Include="D:\Github\A-DS1\build\Table\ListTable\ListTableTest\ListTableTest.vcxproj">
-      <Project>{25EA0EDC-C660-3B4A-90C0-8C7AD9B048E0}</Project>
-      <Name>ListTableTest</Name>
-    </ProjectReference>
     <ProjectReference Include="D:\Github\A-DS1\build\SupportingClasses\List\ListTest\ListTest.vcxproj">
       <Project>{8FA88105-5401-3182-BDF7-B192AE409043}</Project>
       <Name>ListTest</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Github\A-DS1\build\Table\OrderedArrTable\OrderedArrTable.vcxproj">
+      <Project>{2551B288-42D0-3DDC-939A-A6BA4FF19C11}</Project>
+      <Name>OrderedArrTable</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Github\A-DS1\build\Table\OrderedArrTable\OrderedArrTableLib\OrderedArrTableLib.vcxproj">
+      <Project>{F08E0F8C-FF67-3927-A1F6-B5FC1CCCF920}</Project>
+      <Name>OrderedArrTableLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Github\A-DS1\build\Table\OrderedArrTable\OrderedArrTableTest\OrderedArrTableTest.vcxproj">
+      <Project>{E3869FBB-0C5A-3D10-B666-23C0F0569700}</Project>
+      <Name>OrderedArrTableTest</Name>
     </ProjectReference>
     <ProjectReference Include="D:\Github\A-DS1\build\Polinom\PolinomLib\PolinomLib.vcxproj">
       <Project>{5C3FE4AF-3A2B-3C53-A33C-C4C5E75B9B46}</Project>
@@ -162,6 +210,18 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ProjectReference Include="D:\Github\A-DS1\build\SupportingClasses\Postfix\PostfixTest\PostfixTest.vcxproj">
       <Project>{2E6230C5-AA8D-3C4F-B4E1-AB89B1CA35C8}</Project>
       <Name>PostfixTest</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Github\A-DS1\build\Table\RBTreeTable\RBTreeTable.vcxproj">
+      <Project>{0C103CEF-1A60-32BF-82D6-44E62B70057A}</Project>
+      <Name>RBTreeTable</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Github\A-DS1\build\Table\RBTreeTable\RBTreeTableLib\RBTreeTableLib.vcxproj">
+      <Project>{A4CE6A3F-FF99-306B-9AEC-347E293628E1}</Project>
+      <Name>RBTreeTableLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Github\A-DS1\build\Table\RBTreeTable\RBTreeTableTest\RBTreeTableTest.vcxproj">
+      <Project>{933ABF58-564A-3389-A4CB-4455A41AAD96}</Project>
+      <Name>RBTreeTableTest</Name>
     </ProjectReference>
     <ProjectReference Include="D:\Github\A-DS1\build\SupportingClasses\Stack\Stack.vcxproj">
       <Project>{A02973A4-1246-38FC-A92E-21CD3FB8E0E5}</Project>

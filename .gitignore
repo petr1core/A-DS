@@ -2,4 +2,5 @@
 # Данный GITIGNORE-файл был автоматически создан Microsoft(R) Visual Studio.
 ################################################################################
 
-/build/PoliAlgebra.sln
+D:\Github\A-DS1\build\.vs
+/build/*
