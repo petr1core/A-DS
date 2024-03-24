@@ -22,7 +22,7 @@ public:
 	int GoNext(void) override;
 
 	Key GetKey(void) const override;
-	Value GetValuePtr(void) const override;
+	Value GetValuePtr(void) const override; s
 };
 
 template<class Key, class Value>
