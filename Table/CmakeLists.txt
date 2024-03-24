@@ -9,10 +9,21 @@ endif()
 include_directories(BaseTable)
 add_subdirectory(BaseTable)
 
-include_directories(ListTable)
-add_subdirectory(ListTable)
+include_directories(LinearListTable)
+add_subdirectory(LinearListTable)
 
-file(GLOB srcs "*.cpp")
+include_directories(LinearArrTable)
+add_subdirectory(LinearArrTable)
 
-#add_executable(${PROJECT_NAME} ${srcs})
-#target_link_libraries(${PROJECT_NAME} gtest)
+include_directories(OrderedArrTable)
+add_subdirectory(OrderedArrTable)
+
+include_directories(HashChainTable)
+add_subdirectory(HashChainTable)
+
+include_directories(HashRepeatTable)
+add_subdirectory(HashRepeatTable)
+
+include_directories(RBTreeTable)
+add_subdirectory(RBTreeTable)
+# Table

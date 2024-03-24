@@ -193,6 +193,51 @@ CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 CMAKE_VERBOSE_MAKEFILE:BOOL=OFF
 
 //Value Computed by CMake
+HashChainTable_BINARY_DIR:STATIC=D:/Github/A-DS1/build/Table/HashChainTable
+
+//Value Computed by CMake
+HashChainTable_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+HashChainTable_SOURCE_DIR:STATIC=D:/Github/A-DS1/Table/HashChainTable
+
+//Value Computed by CMake
+HashRepeatTable_BINARY_DIR:STATIC=D:/Github/A-DS1/build/Table/HashRepeatTable
+
+//Value Computed by CMake
+HashRepeatTable_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+HashRepeatTable_SOURCE_DIR:STATIC=D:/Github/A-DS1/Table/HashRepeatTable
+
+//Value Computed by CMake
+LATable_BINARY_DIR:STATIC=D:/Github/A-DS1/build/Table/LinearArrTable
+
+//Value Computed by CMake
+LATable_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+LATable_SOURCE_DIR:STATIC=D:/Github/A-DS1/Table/LinearArrTable
+
+//Value Computed by CMake
+LinearArrTable_BINARY_DIR:STATIC=D:/Github/A-DS1/build/Table/LinearArrTable
+
+//Value Computed by CMake
+LinearArrTable_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+LinearArrTable_SOURCE_DIR:STATIC=D:/Github/A-DS1/Table/LinearArrTable
+
+//Value Computed by CMake
+LinearListTable_BINARY_DIR:STATIC=D:/Github/A-DS1/build/Table/LinearListTable
+
+//Value Computed by CMake
+LinearListTable_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+LinearListTable_SOURCE_DIR:STATIC=D:/Github/A-DS1/Table/LinearListTable
+
+//Value Computed by CMake
 ListTable_BINARY_DIR:STATIC=D:/Github/A-DS1/build/Table/ListTable
 
 //Value Computed by CMake
@@ -209,6 +254,24 @@ List_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
 List_SOURCE_DIR:STATIC=D:/Github/A-DS1/SupportingClasses/List
+
+//Value Computed by CMake
+OrdArrTable_BINARY_DIR:STATIC=D:/Github/A-DS1/build/Table/OrderedArrTable
+
+//Value Computed by CMake
+OrdArrTable_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+OrdArrTable_SOURCE_DIR:STATIC=D:/Github/A-DS1/Table/OrderedArrTable
+
+//Value Computed by CMake
+OrderedArrTable_BINARY_DIR:STATIC=D:/Github/A-DS1/build/Table/OrderedArrTable
+
+//Value Computed by CMake
+OrderedArrTable_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+OrderedArrTable_SOURCE_DIR:STATIC=D:/Github/A-DS1/Table/OrderedArrTable
 
 //Value Computed by CMake
 PoliAlgebra_BINARY_DIR:STATIC=D:/Github/A-DS1/build
@@ -236,6 +299,15 @@ Project_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
 Project_SOURCE_DIR:STATIC=D:/Github/A-DS1
+
+//Value Computed by CMake
+RBTreeTable_BINARY_DIR:STATIC=D:/Github/A-DS1/build/Table/RBTreeTable
+
+//Value Computed by CMake
+RBTreeTable_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+RBTreeTable_SOURCE_DIR:STATIC=D:/Github/A-DS1/Table/RBTreeTable
 
 //Value Computed by CMake
 Stack_BINARY_DIR:STATIC=D:/Github/A-DS1/build/SupportingClasses/Stack
@@ -367,7 +439,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_MT
 CMAKE_MT-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=22
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=37
 //Platform information initialized
 CMAKE_PLATFORM_INFO_INITIALIZED:INTERNAL=1
 //noop for ranlib

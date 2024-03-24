@@ -1,4 +1,4 @@
-
+using namespace std;
 #pragma once
 template <class T>
 class TStack {
@@ -50,8 +50,6 @@ public:
 		if (IsEmpty()) throw std::runtime_error{"The stack is empty"};
 		return mas[top];
 	} 
-	
-	//операторы вводы и выводы
 
 	bool IsFull() {
 		return top == size - 1;
@@ -85,4 +83,4 @@ public:
 		}
 		return false;
 	}
-	};
+};

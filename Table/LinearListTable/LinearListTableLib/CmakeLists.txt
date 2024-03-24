@@ -1,0 +1,6 @@
+file(GLOB hdrs "*.h") 
+file(GLOB srcs "*.cpp")
+add_library(${LinearListTableLib} STATIC ${srcs} ${hdrs})
+
+
+#Linear LIST TABLE LIBRARY
