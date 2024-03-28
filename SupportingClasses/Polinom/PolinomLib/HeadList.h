@@ -14,6 +14,22 @@ public:
 	~THeadList();
 	void InsertFirst(T item); // вставка звеньев после заголовка
 	void DeleteFirst(); // удалить первое звено
+
+	class Iterator
+	{
+	private:
+		TNode<T>* curs;
+	public:
+		Iterator() { this->curs = nullptr; }
+		TNode<T>* Get() { return this->curs; }
+		void operator=(TNode<T>* n) { this->curs = n }
+		void operator++(int t) { this->curs = this->curs->pNext; }
+		bool operator!=(TNode<T>* n) { return this->curs != n; }
+		bool operator==(TNode<T>* n) { return this->curs == n; }
+
+	};
+	TNode<T>* begin() { return this->pHead; }
+	TNode<T>* end() { return (pLast == nullptr) ? pLast : pLast.pNext; }
 };
 
 template<class T>

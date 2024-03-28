@@ -22,7 +22,7 @@ public:
 	int GoNext(void) override;
 
 	Key GetKey(void) const override;
-	Value GetValuePtr(void) const override;
+	Value* GetValuePtr(void) override;
 };
 
 template<class Key, class Value>
@@ -126,7 +126,7 @@ Key OrderedArrTable<Key, Value>::GetKey(void) const
 }
 
 template<class Key, class Value>
-Value OrderedArrTable<Key, Value>::GetValuePtr(void) const
+Value* OrderedArrTable<Key, Value>::GetValuePtr(void)
 {
-	return (!IsEmpty()) ? vec[this->curs].value : NULL;
+	return (!IsEmpty()) ? &vec[this->curs].value : nullptr;
 }

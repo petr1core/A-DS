@@ -12,8 +12,8 @@ add_subdirectory(Postfix)
 include_directories(Stack)
 add_subdirectory(Stack)
 
-include_directories(List)
-add_subdirectory(List)
+include_directories(Polinom)
+add_subdirectory(Polinom)
 
 file(GLOB srcs "*.cpp")
 

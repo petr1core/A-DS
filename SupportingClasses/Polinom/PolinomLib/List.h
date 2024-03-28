@@ -1,6 +1,7 @@
 ﻿#pragma once
-//TODO change unicode or translate comments (╯°□°)╯︵ ┻━┻
+// (╯°□°)╯︵ ┻━┻
 #include <iostream>
+#include "BaseTableLib/BTable.h"
 using namespace std;
 
 template<class T>
@@ -47,12 +48,30 @@ public:
 	bool IsEnd();  // список завершен ?
 
 	T GetCurrentItem();
+	T* GetCurrentItemPtr();
 	int SetCurrentItem(T item);
 	//TNode<T>* GetCurrentItemPointer();
 	//void SetCurrentAt(int ind);
 	/*TList<T>& operator=(const TList<T>& other);
 	bool operator==(const TList<T>& other);
 	bool operator!=(const TList<T>& other);*/
+
+	class Iterator
+	{
+	private:
+		TNode<T>* curs;
+	public:
+		Iterator() { this->curs = nullptr; }
+		TNode<T>* Get() { return this->curs; }
+		T& operator*() { return t->value; }
+		void operator=(TNode<T>* n) { this->curs = n }
+		void operator++(int t) { this->curs = this->curs->pNext; }
+		bool operator!=(TNode<T>* n) { return this->curs != n; }
+		bool operator==(TNode<T>* n) { return this->curs == n; }
+
+	};
+	TNode<T>* begin() { return pFirst; }
+	TNode<T>* end() { return (pLast == nullptr) ? pLast : pLast.pNext; }
 };
 
 template<class T>
@@ -191,6 +210,12 @@ T TList<T>::GetCurrentItem()
 }
 
 template<class T>
+T* TList<T>::GetCurrentItemPtr()
+{
+	return (pCurrent != nullptr) ? &pCurrent->value : throw runtime_error("List is empty");
+}
+
+template<class T>
 int TList<T>::SetCurrentItem(T item)
 {
 	if (pCurrent == nullptr)
@@ -200,6 +225,8 @@ int TList<T>::SetCurrentItem(T item)
 	}
 	return 0;
 }
+
+
 
 //
 //template <class T>

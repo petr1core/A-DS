@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <xkeycheck.h>
 
@@ -14,9 +15,9 @@ protected:
 	int size = 0;
 	int maxsize = 10000;
 public:
-	virtual bool IsFull() const;
-	bool IsEmpty() const;
 	int GetSize() const;
+	bool IsEmpty() const;
+	bool IsFull() const;
 	
 	
 	virtual Value* Find(Key _key) = 0;					
@@ -28,7 +29,7 @@ public:
 	virtual int GoNext(void) = 0;						
 
 	virtual Key GetKey(void) const = 0;
-	virtual Value GetValuePtr(void) const = 0;	//	(=1 first el, if called on last cell of table)				
+	virtual Value* GetValuePtr(void) = 0;	//	(=1 first el, if called on last cell of table)				
 
 	friend ostream& operator<<(ostream& os, Table& tab)
 	{
@@ -51,6 +52,7 @@ bool Table<Key, Value>::IsFull() const
 {
 	return size == maxsize;
 }
+
 template<class Key, class Value>
 bool Table<Key, Value>::IsEmpty() const
 {

@@ -20,7 +20,7 @@ public:
 	
 
 	 Key GetKey(void) const override;
-	 Value GetValuePtr(void) const override;
+	 Value* GetValuePtr(void) override;
 };
 
 template<class Key, class Value>
@@ -106,7 +106,7 @@ Key LinearArrTable<Key, Value>::GetKey(void) const
 }
 
 template<class Key, class Value>
-Value LinearArrTable<Key, Value>::GetValuePtr(void) const
+Value* LinearArrTable<Key, Value>::GetValuePtr(void)
 {
-	return (curs > -1) ? vec[this->curs].value : nullptr;
+	return (curs > -1) ? &vec[this->curs].value : nullptr;
 }
