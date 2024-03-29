@@ -13,6 +13,11 @@ protected:
 	{
 		T value;
 		TNode<T>* pNext;
+
+		/*TNode(const TNode<T>* p) {
+			this->pNext = p->pNext;
+			this->value = p->value;
+		}*/
 	};
 
 	TNode<T>* pFirst;			// First cell
@@ -45,10 +50,10 @@ public:
 	//(=1 после применения GoNext для последнего звена списка)
 
 	void Reset(); // установить на начало списка
-	bool IsEnd();  // список завершен ?
+	bool IsEnd() const;  // список завершен ?
 
 	T GetCurrentItem();
-	T* GetCurrentItemPtr();
+	T* GetCurrentItemPtr() const;
 	int SetCurrentItem(T item);
 	//TNode<T>* GetCurrentItemPointer();
 	//void SetCurrentAt(int ind);
@@ -56,6 +61,7 @@ public:
 	bool operator==(const TList<T>& other);
 	bool operator!=(const TList<T>& other);*/
 
+	/*template<class T>
 	class Iterator
 	{
 	private:
@@ -64,14 +70,14 @@ public:
 		Iterator() { this->curs = nullptr; }
 		TNode<T>* Get() { return this->curs; }
 		T& operator*() { return t->value; }
-		void operator=(TNode<T>* n) { this->curs = n }
+		void operator=(TNode<T>* n) { this->curs = n; }
 		void operator++(int t) { this->curs = this->curs->pNext; }
 		bool operator!=(TNode<T>* n) { return this->curs != n; }
 		bool operator==(TNode<T>* n) { return this->curs == n; }
 
 	};
 	TNode<T>* begin() { return pFirst; }
-	TNode<T>* end() { return (pLast == nullptr) ? pLast : pLast.pNext; }
+	TNode<T>* end() { return (pLast == nullptr) ? pLast : pLast.pNext; }*/
 };
 
 template<class T>
@@ -127,7 +133,7 @@ void TList<T>::InsertCurrent(T item)
 }
 
 template<class T>
-void TList<T>::InsertNextCurrent(T item)
+void TList<T>::InsertNextCurrent(T item) //
 {
 	return;
 }
@@ -136,9 +142,9 @@ template<class T>
 void TList<T>::InsertLast(T item)
 {
 	TNode<T>* n = new TNode<T>{ item, nullptr };
-	if (IsEmpty()) {
+	if (pFirst == NULL && length == 0) {
 		pLast = n;
-		pFirst = pLast;
+		pFirst = pCurrent = pLast;
 	}
 	else {
 		pLast->pNext = n;
@@ -179,6 +185,7 @@ int TList<T>::DeleteCurrent()
 		delete pCurrent;
 		pCurrent = pPrevious->pNext;
 	}
+	length--;
 }
 
 template<class T>
@@ -198,7 +205,7 @@ void TList<T>::Reset()
 }
 
 template<class T>
-bool TList<T>::IsEnd()
+bool TList<T>::IsEnd() const
 {
 	return pCurrent == pStop;
 }
@@ -210,7 +217,7 @@ T TList<T>::GetCurrentItem()
 }
 
 template<class T>
-T* TList<T>::GetCurrentItemPtr()
+T* TList<T>::GetCurrentItemPtr() const
 {
 	return (pCurrent != nullptr) ? &pCurrent->value : throw runtime_error("List is empty");
 }
