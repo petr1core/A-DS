@@ -1,6 +1,9 @@
 #include <iostream>
+#include "HashChainTableLib/HCTable.h"
+
 using namespace std;
 int main() {
-	cout << "Hello" << endl;
-	return 0;
+	HashTable<int, int> t;
+	int e = 12;
+	t.Find(e);
 }
