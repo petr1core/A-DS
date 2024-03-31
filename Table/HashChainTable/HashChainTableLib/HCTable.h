@@ -1,97 +1,49 @@
 #pragma once
 #include <iostream>
 #include <vector>
+#include <string>
+#include <sstream>
 #include "BaseTableLib/BTable.h"
+#include "Polinom/PolinomLib/List.h"
 using namespace std;
 
 template<class Key, class Value>
 class HashTable : public Table<Key, Value>
 {
+protected:
+	TList<Row> list;
 	int HashKey(string _key) const;
-
 public:
 	Value* Find(Key _key) override;
-	int Insert(Key _key, Value _val) override;
-	int Delete(Key _key) override;
+	virtual int Insert(Key _key, Value _val) = 0;
+	virtual int Delete(Key _key) = 0;
 
-	void Reset(void) override;
-	bool IsTabEnded(void) const override;
-	int GoNext(void) override;
+	virtual void Reset(void) = 0;
+	virtual bool IsTabEnded(void) const = 0;
+	virtual int GoNext(void) = 0;
 
-	Key GetKey(void) const override;
-	Value* GetValuePtr(void) override;	//	(=1 first el, if called on last cell of table)
-	operator std::string() const {
-		std::ostringstream ostring;
-		ostring << (int)GetKey();
-		return ostring;
-	}
+	virtual Key GetKey(void) const = 0;
+	virtual Value* GetValuePtr(void) = 0;	//	(=1 first el, if called on last cell of table)
+	//operator std::string() const {
+	//	std::ostringstream ostring;
+	//	ostring << (int)GetKey();
+	//	return ostring;
+	//}
+
 };
-
-
+template<typename Key>
+std::string keyToString(const Key& k)
+{
+	std::ostringstream ostring;
+	ostring << k;
+	return ostring.str();
+}
 
 template<class Key, class Value>
 int HashTable<Key, Value>::HashKey(string _key) const
 {
 	int res = 0;
-	
 	for (int i = 0; i < _key.length(); i++)
 		res += _key[i];
 	return res %= this->maxsize;
-}
-
-
-template<class Key, class Value>
-Value* HashTable<Key, Value>::Find(Key _key)
-{
-	int t = this->HashKey(_key);
-	return nullptr;
-}
-
-template<class Key, class Value>
-int HashTable<Key, Value>::Insert(Key _key, Value _val)
-{
-
-	return 0;
-}
-
-template<class Key, class Value>
-int HashTable<Key, Value>::Delete(Key _key)
-{
-
-	return 0;
-}
-
-template<class Key, class Value>
-void HashTable<Key, Value>::Reset(void)
-{
-
-	return;
-}
-
-template<class Key, class Value>
-bool HashTable<Key, Value>::IsTabEnded(void) const
-{
-
-	return true;
-}
-
-template<class Key, class Value>
-int HashTable<Key, Value>::GoNext(void)
-{
-
-	return 0;
-}
-
-template<class Key, class Value>
-Key HashTable<Key, Value>::GetKey(void) const
-{
-
-	return NULL;
-}
-
-template<class Key, class Value>
-Value* HashTable<Key, Value>::GetValuePtr(void) 
-{
-
-	return nullptr;
 }

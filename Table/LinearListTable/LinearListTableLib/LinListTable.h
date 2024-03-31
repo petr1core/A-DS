@@ -25,7 +25,7 @@ template<class Key, class Value>
 Value* LinearListTable<Key, Value>::Find(Key _key)
 {
 	for (arr.Reset(); !arr.IsEnd(); arr.GoNext()) {
-		if ((*arr.GetCurrentItemPtr()).key == _key){
+		if ((*arr.GetCurrentItemPtr()).key == _key) {
 			return &(*arr.GetCurrentItemPtr()).value;
 		}
 	}
@@ -36,8 +36,9 @@ template<class Key, class Value>
 int LinearListTable<Key, Value>::Insert(Key _key, Value _val)
 {
 	if (this->IsFull()) return -1;
-	if (this->Find(_key) != nullptr) return -1;
-	arr.InsertLast({_key,_val});
+	if (this->Find(_key) != nullptr) {
+		arr.InsertLast({_key,_val});
+	}
 	this->size++;
 	return 0;
 }
