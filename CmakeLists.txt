@@ -4,7 +4,6 @@ project(${PROJECT_NAME})
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
-
 ### Tables
 set(BaseTable BaseTable)
 set(BaseTableTest BaseTableTest)
@@ -67,8 +66,5 @@ add_subdirectory(SupportingClasses)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/Table)
 add_subdirectory(Table)
-
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/Polinom)
-add_subdirectory(Polinom)
 
 

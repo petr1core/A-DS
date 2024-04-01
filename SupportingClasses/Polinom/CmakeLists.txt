@@ -13,7 +13,7 @@ add_subdirectory(polinomTest)
 
 file(GLOB srcs "*.cpp")
 add_executable(${PROJECT_NAME} ${srcs})
-target_link_libraries(${PROJECT_NAME} ${polinomLib} gtest)
+target_link_libraries(${PROJECT_NAME} ${PolinomLib} gtest)
 
 
 # polinom
