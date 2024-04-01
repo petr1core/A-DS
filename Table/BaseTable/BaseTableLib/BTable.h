@@ -10,6 +10,13 @@ protected:
 	struct Row {
 		Key key;
 		Value value;
+
+		Row(Key k, Value v) {
+			this->key = k;
+			this->value = v;
+		}
+
+		Row() : key(Key()), value(Value()) {}
 	};
 	int size = 0;
 	int maxsize = 10000;
