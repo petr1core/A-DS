@@ -37,7 +37,7 @@ public:
 		if (!tab.IsEmpty()) {
 		for (tab.Reset(); !tab.IsTabEnded(); tab.GoNext())
 		{
-			os << " Key: " << tab.GetKey() << " Val: " << tab.GetValuePtr() << endl;
+			os << " Key: " << tab.GetKey() << " Val: " << *(tab.GetValuePtr()) << endl;
 		}
 		return os;
 		}
