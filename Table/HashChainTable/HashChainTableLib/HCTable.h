@@ -9,7 +9,8 @@ using namespace std;
 template<class Key, class Value>
 class HashChainTable : public Table<Key, Value>
 {
-	std::vector<TList<Row>> vec;
+	vector<TList<Row>*> vec;
+	TList<Row>* empty = new TList<Row>();
 	int curs = -1;
 	int count = 0; // not empty els in vec
 	int itemCurs = -1;
@@ -64,76 +65,41 @@ Value* HashChainTable<Key, Value>::Find(Key _key)
 {
 	int t = this->HashKey(_key);
 	if (this->IsEmpty()) return nullptr;
-	vec[t].Reset();
-	return &(vec[t].GetCurrentItemPtr()->value);
+	vec[t]->Reset();
+	return &(vec[t]->GetCurrentItemPtr()->value);
 }
 
 template<class Key, class Value>
 int HashChainTable<Key, Value>::Insert(Key _key, Value _val)
 {
-	/*size_t index = this->GetHash(key, M);
-	auto& list = this->data[index];
-
-	for (list.Reset(); !list.IsListEnded(); list.GoNext()) {
-		auto rec = list.GetDatValue();
-		if (rec == nullptr)
-			break;
-		if (rec->key == key) {
-			rec->value = value;
-			return;
-		}
-	}
-	auto rec = new Table<Key, Value>::template STableRec<Key, Value>(key, value);
-	if (list.GetCurrentPos() != 0)
-		list.SetCurrentPos(list.GetCurrentPos() - 1);
-	list.InsCurrent(rec);
-
-	if (this->actriveRec == nullptr) {
-		this->actriveRec = rec;
-	}
-
-	this->length++;*/
-
-	/*struct STableRec {
-		Key key;
-		Value value;
-		STableRec(Key key, Value value) {
-			this->key = key;
-			this->value = value;
-		}
-		STableRec() : key(Key()), value(Value()) {}
-	};*/
 
 	if (this->IsFull()) return -1;
 	int t = this->HashKey(_key);
-	Row row(_key, _val);
-	//auto row_done = new Table<Key, Value>::template TList::TNode<Row>{ row, nullptr };
-	//TList::TNode<Row> row_done(row, nullptr);
-
+	//Row row(_key, _val);
 	if (t >= vec.size()) {		// if vec has no space to insert in that index
 		if ((t + 1) <= this->maxsize) {
-			TList<Row> newlist;
-			newlist.InsertFirst(row);
-			vec.resize(t);
+			TList<Row>* newlist = new TList<Row>();
+			newlist->InsertLast({ _key, _val });
+			vec.resize(t,empty);
 			vec.push_back(newlist);
 			count++;
+			size = vec.size();
 			if (count == 1) { // if first el in whole vec, make cursor point to it
 				this->Reset();
 			}
-			size = vec.size();
 			return 0;
 		}
 		else return -1; // reached max
 	}
-	if (vec[t] == TList<Row>()) {  // if cell[t] has no TList in
-		TList<Row> newlist;
-		newlist.InsertFirst(row);
+	if (*(vec[t]) == TList<Row>{}) {  // if cell[t] has no TList in
+		TList<Row>* newlist = new TList<Row>();
+		newlist->InsertLast({ _key, _val });
 		vec[t] = newlist;
 		count++;
 		size++;
 	}
 	else {   // if cell [t] already has TList in
-		vec[t].InsertLast(row);
+		vec[t]->InsertLast({ _key, _val });
 		size++;
 	}
 	return 0;
@@ -144,31 +110,35 @@ int HashChainTable<Key, Value>::Delete(Key _key) //??
 {
 	if (this->IsEmpty()) return -1;
 	int t = this->HashKey(_key);
-	vec[t] = TList<Row>{};
+	vec[t] = &(TList<Row>{});
 	return 0;
 }
 
 template<class Key, class Value>
 void HashChainTable<Key, Value>::Reset(void)
 {
-	this->curs = -1;
+	this->curs = (count != 0) ? 0 : -1;
 	this->itemCurs = 0;
 	this->GoNext();
-	vec[this->curs].Reset();
+	vec[this->curs]->Reset();
 }
 template<class Key, class Value>
 int HashChainTable<Key, Value>::GoNext(void)
 {
-	if (!vec[curs + 1 % size].IsEnd())
-		vec[curs + 1 % size].GoNext();
-	else {
-		do {
-			curs = (curs + 1) % size;
-
-		} while (vec[curs] == TList<Row>{});
+	if (!(*(vec[curs]) == TList<Row>{})) {
+		if (!vec[curs]->IsEnd())
+			vec[curs]->GoNext();
+		return 0;
 	}
-	if (count != 0 && !(vec[curs] == TList<Row>{}))
-		this->itemCurs++;
+	else {
+			do {
+				curs = (curs + 1) % size;
+
+			} while (*(vec[curs]) == TList<Row>());
+
+			if (count != 0 && !(*(vec[curs]) == TList<Row>()))
+				this->itemCurs++;
+	}
 	return 0;
 }
 
@@ -183,11 +153,11 @@ template<class Key, class Value>
 Key HashChainTable<Key, Value>::GetKey(void) const //??
 {
 	if (curs == -1) return NULL;
-	return (vec[this->curs].GetCurrentItemPtr())->key;
+	return (vec[this->curs]->GetCurrentItemPtr())->key;
 }
 template<class Key, class Value>
 Value* HashChainTable<Key, Value>::GetValuePtr(void) //??
 {
 	if (curs == -1) return nullptr;
-	return &(vec[this->curs].GetCurrentItem().value);
+	return &(vec[this->curs]->GetCurrentItemPtr()->value);
 }

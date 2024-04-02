@@ -16,6 +16,13 @@ protected:
 			key = k;
 			value = v;
 		}
+
+		bool operator==(const Row& r) const{
+			return (this->key == r.key && this->value == r.value);
+		}
+		bool operator!=(const Row& r) const {
+			return (this->key != r.key || this->value != r.value);
+		}
 	};
 	int size = 0;
 	int maxsize = 10000;

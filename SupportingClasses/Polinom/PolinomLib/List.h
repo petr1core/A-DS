@@ -12,7 +12,6 @@ protected:
 	{
 		T value;
 		TNode<T>* pNext;
-
 	};
 
 	TNode<T>* pFirst;			// First cell
@@ -138,7 +137,7 @@ int TList<T>::DeleteFirst()
 		pLast = nullptr;
 	delete n;
 	length--;
-	return 0
+	return 0;
 }
 
 template<class T>
