@@ -81,7 +81,6 @@ int LinearListTable<Key, Value>::Delete(Key _key)
 		}
 	}
 	return -1;
-	return -1;
 	//for (arr.Reset(); arr.IsEnd(); arr.GoNext()) {
 	//	if (arr.pCurrent.key == _key) {
 	//		if (this->curs == arr.pCurrent)

@@ -64,7 +64,7 @@ public:
 		Iterator() { this->curs = nullptr; }
 		TNode<T>* Get() { return this->curs; }
 		T& operator*() { return t->value; }
-		void operator=(TNode<T>* n) { this->curs = n }
+		void operator=(TNode<T>* n) { this->curs = n; }
 		void operator++(int t) { this->curs = this->curs->pNext; }
 		bool operator!=(TNode<T>* n) { return this->curs != n; }
 		bool operator==(TNode<T>* n) { return this->curs == n; }
