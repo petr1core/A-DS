@@ -72,10 +72,8 @@ Value* HashChainTable<Key, Value>::Find(Key _key)
 template<class Key, class Value>
 int HashChainTable<Key, Value>::Insert(Key _key, Value _val)
 {
-
 	if (this->IsFull()) return -1;
 	int t = this->HashKey(_key);
-	//Row row(_key, _val);
 	if (t >= vec.size()) {		// if vec has no space to insert in that index
 		if ((t + 1) <= this->maxsize) {
 			TList<Row>* newlist = new TList<Row>();
@@ -126,9 +124,19 @@ template<class Key, class Value>
 int HashChainTable<Key, Value>::GoNext(void)
 {
 	if (!(*(vec[curs]) == TList<Row>{})) {
-		if (!vec[curs]->IsEnd())
+		if (!vec[curs]->IsNextEnd()){
 			vec[curs]->GoNext();
 		return 0;
+		}
+		else {
+			do {
+				curs = (curs + 1) % size;
+
+			} while (*(vec[curs]) == TList<Row>());
+
+			if (count != 0 && !(*(vec[curs]) == TList<Row>()))
+				this->itemCurs++;
+		}
 	}
 	else {
 			do {
@@ -159,5 +167,8 @@ template<class Key, class Value>
 Value* HashChainTable<Key, Value>::GetValuePtr(void) //??
 {
 	if (curs == -1) return nullptr;
-	return &(vec[this->curs]->GetCurrentItemPtr()->value);
+	if (vec[this->curs]->IsEnd()) {
+		return nullptr;
+	}
+	else return &(vec[this->curs]->GetCurrentItemPtr()->value);
 }

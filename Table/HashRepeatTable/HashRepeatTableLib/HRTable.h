@@ -88,9 +88,10 @@ int HashRepeatTable<Key, Value>::Insert(Key _key, Value _val)
 	int repeat_id = -1;
 	
 	if (vec.size() <= id){
-		if ((id + 1) != this->maxsize) {
+		if ((id + 1) <= this->maxsize) {
 			vec.resize(id);
-			vec.push_back({ _key, _val });
+			Row row(_key, _val);
+			vec.push_back(row);
 			count++;
 			size = vec.size();
 			if (count == 1) {
@@ -124,7 +125,8 @@ int HashRepeatTable<Key, Value>::Delete(Key _key)
 	if (this->IsEmpty()) return - 1;
 	if (this->Find(_key) == nullptr) return -1;
 	int id = this->HashKey(_key);
-	vec[id] = Row{ Key(),Value() };
+	Row empty{};
+	vec[id] = empty;
 	return 0;
 }
 

@@ -12,6 +12,11 @@ protected:
 	{
 		T value;
 		TNode<T>* pNext;
+
+		TNode<T>* get_next(void) 
+		{
+			return pNext;
+		}
 	};
 
 	TNode<T>* pFirst;			// First cell
@@ -45,6 +50,7 @@ public:
 
 	void Reset(); // установить на начало списка
 	bool IsEnd() const;  // список завершен ?
+	bool IsNextEnd() const;  // список завершен ?
 
 	T GetCurrentItem();
 	T* GetCurrentItemPtr() const;
@@ -53,6 +59,8 @@ public:
 	bool operator==(const TList<T>& other) const;
 	//bool operator!=(const TList<T>& other) const;
 };
+
+
 
 template<class T>
 TList<T>::TList() {
@@ -184,6 +192,12 @@ bool TList<T>::IsEnd() const
 {
 	return pCurrent == pStop;
 }
+template<class T>
+bool TList<T>::IsNextEnd() const  // next el is empty???
+{
+	return pCurrent->get_next() == nullptr;
+}
+
 
 template<class T>
 T TList<T>::GetCurrentItem()

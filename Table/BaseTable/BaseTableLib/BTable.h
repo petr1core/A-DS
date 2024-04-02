@@ -12,11 +12,18 @@ protected:
 		Key key;
 		Value value;
 
+		Row() {
+			key = Key();
+			value = Value();
+		}
 		Row(Key k, Value v) {
 			key = k;
 			value = v;
 		}
-
+		Row(const Row& row) {
+			key = row.key;
+			value = row.value;
+		}
 		bool operator==(const Row& r) const{
 			return (this->key == r.key && this->value == r.value);
 		}
