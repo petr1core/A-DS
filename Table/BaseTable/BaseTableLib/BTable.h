@@ -11,6 +11,11 @@ protected:
 	struct Row {
 		Key key;
 		Value value;
+
+		Row(Key k, Value v) {
+			key = k;
+			value = v;
+		}
 	};
 	int size = 0;
 	int maxsize = 10000;
@@ -43,6 +48,7 @@ public:
 		}
 		else {
 			os << " Key: " << "NONE" << " Val: " << "NONE" << endl;
+			return os;
 		}
 	}
 };
