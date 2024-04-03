@@ -352,7 +352,4 @@ public:
 		}
 		return current;
 	}
-
-
-
 };

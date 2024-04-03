@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include <xkeycheck.h>
 #include "HashChainTableLib/HashChainTable.h"
 #include "HashRepeatTableLib/HashRepeatTable.h"
@@ -7,21 +8,19 @@
 #include "ListLinearTableLib/ListLinearTable.h"
 #include "ArrOrderedTableLib/ArrOrderedTable.h"
 #include "ArrLinearTableLib/ArrLinearTable.h"
-
-
 using namespace std;
 
 class MixTable {
 private:
-    SearchTreeTable <int, TPolinom>sTree;
-    AVLTreeTable <int, TPolinom>AVLTree;
+    SearchTreeTable <string, TPolinom> sTree;
+    AVLTreeTable <string, TPolinom> AVLTree;
 public:
-    void Add(int key, TPolinom p) {
+    void Add(string key, TPolinom p) {
         sTree.Insert(key, p);
         AVLTree.Insert(key, p);
     }
 
-    void Delete(int key) {
+    void Delete(string key) {
         sTree.Delete(key);
         AVLTree.Delete(key);
     }
@@ -29,7 +28,7 @@ public:
         sTree.print(sTree.root);
         AVLTree.root->print();
     }
-    void Find(int id, int key) {
+    void Find(int id, string key) {
         switch (id) {
         case 1: //поиск в линейной на массиве
             break;
