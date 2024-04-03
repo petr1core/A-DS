@@ -1,3 +1,1 @@
-// empty because TNode already in TList
-#include "PolinomLib/List.h"
-
+// empty because TList already has TNode in it

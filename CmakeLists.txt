@@ -2,24 +2,22 @@ cmake_minimum_required(VERSION 3.5)
 set(PROJECT_NAME PoliAlgebra)
 project(${PROJECT_NAME})
 
-set_property(GLOBAL PROPERTY USE_FOLDERS ON)
-
 ### Tables
-set(BaseTable BaseTable)
-set(BaseTableTest BaseTableTest)
-set(BaseTableLib BaseTableLib)
+set(TableBase TableBase)
+set(TableBaseTest TableBaseTest)
+set(TableBaseLib TableBaseLib)
 
-set(LinearListTable LinearListTable)
-set(LinearListTableTest LinearListTableTest)
-set(LinearListTableLib LinearListTableLib)
+set(ListLinearTable ListLinearTable)
+set(ListLinearTableTest ListLinearTableTest)
+set(ListLinearTableLib ListLinearTableLib)
 
-set(LinearArr LinearArr)
-set(LinearArrTest LinearArrTest)
-set(LinearArrLib LinearArrLib)
+set(ArrLinearTable ArrLinearTable)
+set(ArrLinearTableTest ArrLinearTableTest)
+set(ArrLinearTableLib ArrLinearTableLib)
 
-set(OrderedArrTable OrderedArrTable)
-set(OrderedArrTableTest OrderedArrTableTest)
-set(OrderedArrTableLib OrderedArrTableLib)
+set(ArrOrderedTable ArrOrderedTable)
+set(ArrOrderedTableTest ArrOrderedTableTest)
+set(ArrOrderedTableLib ArrOrderedTableLib)
 
 set(HashChainTable HashChainTable)
 set(HashChainTableTest HashChainTableTest)
@@ -29,9 +27,15 @@ set(HashRepeatTable HashRepeatTable)
 set(HashRepeatTableTest HashRepeatTableTest)
 set(HashRepeatTableLib HashRepeatTableLib)
 
-set(RBTreeTable RBTreeTable)
-set(RBTreeTableTest RBTreeTableTest)
-set(RBTreeTableLib RBTreeTableLib)
+set(TreeAVLTable TreeAVLTable)
+set(TreeAVLTableTest TreeAVLTableTest)
+set(TreeAVLTableLib TreeAVLTableLib)
+
+### Table Interface
+
+set(TableMix TableMix)
+set(TableMixTest TableMixTest)
+set(TableMixLib TableMixLib)
 
 ### Polinom
 
@@ -52,6 +56,10 @@ set(ListLib ListLib)
 set(Postfix Postfix)
 set(PostfixTest PostfixTest)
 set(PostfixLib PostfixLib)
+
+### 
+
+set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 set(CMAKE_CONFIGURATION_TYPES "Debug;Release" CACHE STRING "Configs" FORCE)
 if(NOT CMAKE_BUILD_TYPE)

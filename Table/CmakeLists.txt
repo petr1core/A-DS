@@ -6,17 +6,17 @@ if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE Release)
 endif()
 
-include_directories(BaseTable)
-add_subdirectory(BaseTable)
+include_directories(TableBase)
+add_subdirectory(TableBase)
 
-include_directories(LinearListTable)
-add_subdirectory(LinearListTable)
+include_directories(ListLinearTable)
+add_subdirectory(ListLinearTable)
 
-include_directories(LinearArrTable)
-add_subdirectory(LinearArrTable)
+include_directories(ArrLinearTable)
+add_subdirectory(ArrLinearTable)
 
-include_directories(OrderedArrTable)
-add_subdirectory(OrderedArrTable)
+include_directories(ArrOrderedTable)
+add_subdirectory(ArrOrderedTable)
 
 include_directories(HashChainTable)
 add_subdirectory(HashChainTable)
@@ -24,6 +24,9 @@ add_subdirectory(HashChainTable)
 include_directories(HashRepeatTable)
 add_subdirectory(HashRepeatTable)
 
-include_directories(RBTreeTable)
-add_subdirectory(RBTreeTable)
+include_directories(TreeAVLTable)
+add_subdirectory(TreeAVLTable)
+
+include_directories(TableMix)
+add_subdirectory(TableMix)
 # Table

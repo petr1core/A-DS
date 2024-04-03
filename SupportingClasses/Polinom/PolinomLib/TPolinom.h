@@ -1,8 +1,7 @@
-#pragma once
 
-#include "List/ListLib/HeadList.h"
-#include "PolinomLib/TMonom.h"
-#include "PolinomLib/TDynamicVector.h"
+#include "TMonom.h"
+#include "HeadList.h"
+#include "TDynamicVector.h"
 #include <string>
 #include <sstream>
 #include <iostream>

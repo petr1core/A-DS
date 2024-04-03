@@ -1,0 +1,19 @@
+cmake_minimum_required(VERSION 3.5)
+
+set(PROJECT_NAME ListLinearTable)
+project(${PROJECT_NAME})
+
+set(CMAKE_CONFIGURATION_TYPES "DEBUG;RELEASE" CACHE STRING "Configs" FORCE)
+if (NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Release)
+endif()
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/ListLinearTableLib)
+add_subdirectory(ListLinearTableLib)
+add_subdirectory(ListLinearTableTest)
+
+file(GLOB srcs "*.cpp")
+add_executable(${PROJECT_NAME} ${srcs})
+target_link_libraries(${PROJECT_NAME} ${ListLinearTableLib} gtest)
+
+#ListLinear TABLE

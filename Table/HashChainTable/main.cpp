@@ -1,5 +1,5 @@
 #include <iostream>
-#include "HashChainTableLib/HCTable.h"
+#include "HashChainTableLib/HashChainTable.h"
 using namespace std;
 int main() {
 	HashChainTable<int, std::string> t;
@@ -10,8 +10,9 @@ int main() {
 	t.Insert(6, "saaasdasds");
 	t.Insert(1212, "s vcxvaas");
 
+	cout << t << std::endl;
+	t.Delete(1);
+	t.Delete(2);
 
-	std::cout << t << std::endl;
-	//t.Delete(1);
-	//std::cout << t << std::endl;
+	cout << t << std::endl;
 }
