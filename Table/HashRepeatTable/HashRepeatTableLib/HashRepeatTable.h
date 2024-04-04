@@ -33,18 +33,18 @@ public:
 };
 
 template<class Key, class Value>
-double HashRepeatTable<Key, Value>::Getfullness(void) const
+double HashRepeatTable<Key, Value>::Getfullness(void) const 
 {
 	return (double)count / size;
 }
 
 template<class Key, class Value>
-int HashRepeatTable<Key, Value>::GetCount(void) const
+int HashRepeatTable<Key, Value>::GetCount(void) const 
 {
 	return this->count;
 }
 template<class Key, class Value>
-int HashRepeatTable<Key, Value>::HashKey(Key _key) const
+int HashRepeatTable<Key, Value>::HashKey(Key _key) const 
 {
 	int sum = 0;
 	string str = _key;
@@ -54,7 +54,7 @@ int HashRepeatTable<Key, Value>::HashKey(Key _key) const
 }
 
 template<class Key, class Value>
-int HashRepeatTable<Key, Value>::Rehash(Key _key, int seed) const
+int HashRepeatTable<Key, Value>::Rehash(Key _key, int seed) const 
 {
 	int sum = seed;
 	string str = to_string(_key);
@@ -65,7 +65,7 @@ int HashRepeatTable<Key, Value>::Rehash(Key _key, int seed) const
 }
 
 template<class Key, class Value>
-Value* HashRepeatTable<Key, Value>::Find(Key _key)
+Value* HashRepeatTable<Key, Value>::Find(Key _key) 
 {
 	if (this->IsEmpty()) return nullptr;
 	int id = this->HashKey(_key);
@@ -78,7 +78,7 @@ Value* HashRepeatTable<Key, Value>::Find(Key _key)
 
 
 template<class Key, class Value>
-int HashRepeatTable<Key, Value>::Insert(Key _key, Value _val)
+int HashRepeatTable<Key, Value>::Insert(Key _key, Value _val) 
 {
 	if (this->IsFull()) return -1;
 
@@ -118,7 +118,7 @@ int HashRepeatTable<Key, Value>::Insert(Key _key, Value _val)
 }
 
 template<class Key, class Value>
-int HashRepeatTable<Key, Value>::Delete(Key _key)
+int HashRepeatTable<Key, Value>::Delete(Key _key) 
 {
 	if (this->IsEmpty()) return - 1;
 	if (this->Find(_key) == nullptr) return -1;
@@ -129,7 +129,7 @@ int HashRepeatTable<Key, Value>::Delete(Key _key)
 }
 
 template<class Key, class Value>
-void HashRepeatTable<Key, Value>::Reset(void)
+void HashRepeatTable<Key, Value>::Reset(void) 
 {
 	steps = 0;
 	curs = -1;
@@ -137,13 +137,13 @@ void HashRepeatTable<Key, Value>::Reset(void)
 }
 
 template<class Key, class Value>
-bool HashRepeatTable<Key, Value>::IsTabEnded(void) const
+bool HashRepeatTable<Key, Value>::IsTabEnded(void) const 
 {
 	return steps == count + 1;
 }
 
 template<class Key, class Value>
-int HashRepeatTable<Key, Value>::GoNext(void)
+int HashRepeatTable<Key, Value>::GoNext(void) 
 {
 	do { curs = (curs + 1) % size; }
 	while (vec[curs].key == Key());
@@ -154,13 +154,13 @@ int HashRepeatTable<Key, Value>::GoNext(void)
 }
 
 template<class Key, class Value>
-Key HashRepeatTable<Key, Value>::GetKey(void) const
+Key HashRepeatTable<Key, Value>::GetKey(void) const 
 {
 	return (curs != -1) ? vec[curs].key : NULL;
 }
 
 template<class Key, class Value>
-Value* HashRepeatTable<Key, Value>::GetValuePtr(void)
+Value* HashRepeatTable<Key, Value>::GetValuePtr(void) 
 { 
 	return (curs != -1) ? &vec[curs].value : nullptr;
 

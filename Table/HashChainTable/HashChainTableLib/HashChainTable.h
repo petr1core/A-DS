@@ -14,38 +14,38 @@ class HashChainTable : public Table<Key, Value>
 	int curs = -1;
 	int count = 0; // not empty els in vec
 	int itemCurs = -1;
-	int HashKey(Key _key) const;
+	int HashKey(Key _key) const ;
 
 public:
 
-	double Getfullness(void) const;
-	int GetCount(void) const;
-	Value* Find(Key _key) override;
-	int Insert(Key _key, Value _val) override;
-	int Delete(Key _key) override;
+	double Getfullness(void) const ;
+	int GetCount(void) const ;
+	Value* Find(Key _key) override ;
+	int Insert(Key _key, Value _val) override ;
+	int Delete(Key _key) override ;
 
-	void Reset(void) override;
-	bool IsTabEnded(void) const override;
-	int GoNext(void) override;
+	void Reset(void) override ;
+	bool IsTabEnded(void) const override ;
+	int GoNext(void) override ;
 
-	Key GetKey(void) const override;
-	Value* GetValuePtr(void) override;
+	Key GetKey(void) const override ;
+	Value* GetValuePtr(void) override ;
 };
 
 template<class Key, class Value>
-double HashChainTable<Key, Value>::Getfullness(void) const
+double HashChainTable<Key, Value>::Getfullness(void) const 
 {
 	return (double)count / size;
 }
 
 template<class Key, class Value>
-int HashChainTable<Key, Value>::GetCount(void) const
+int HashChainTable<Key, Value>::GetCount(void) const 
 {
 	return this->count;
 }
 
 template<class Key, class Value>
-int HashChainTable<Key, Value>::HashKey(Key _key) const
+int HashChainTable<Key, Value>::HashKey(Key _key) const 
 {
 	int res = 0;
 	string str = _key;
@@ -55,7 +55,7 @@ int HashChainTable<Key, Value>::HashKey(Key _key) const
 }
 
 template<class Key, class Value>
-Value* HashChainTable<Key, Value>::Find(Key _key)
+Value* HashChainTable<Key, Value>::Find(Key _key) 
 {
 	int t = this->HashKey(_key);
 	if (this->IsEmpty()) return nullptr;
@@ -65,7 +65,7 @@ Value* HashChainTable<Key, Value>::Find(Key _key)
 }
 
 template<class Key, class Value>
-int HashChainTable<Key, Value>::Insert(Key _key, Value _val)
+int HashChainTable<Key, Value>::Insert(Key _key, Value _val) 
 {
 	if (this->IsFull()) return -1;
 	int t = this->HashKey(_key);
@@ -99,7 +99,7 @@ int HashChainTable<Key, Value>::Insert(Key _key, Value _val)
 }
 
 template<class Key, class Value>
-int HashChainTable<Key, Value>::Delete(Key _key) //??
+int HashChainTable<Key, Value>::Delete(Key _key) 
 {
 	if (this->IsEmpty()) return -1;
 	if (this->count > 1) {
@@ -118,7 +118,7 @@ int HashChainTable<Key, Value>::Delete(Key _key) //??
 }
 
 template<class Key, class Value>
-void HashChainTable<Key, Value>::Reset(void)
+void HashChainTable<Key, Value>::Reset(void) 
 {
 	this->curs = (count != 0) ? 0 : -1;
 	this->itemCurs = 0;
@@ -126,7 +126,7 @@ void HashChainTable<Key, Value>::Reset(void)
 	vec[this->curs]->Reset();
 }
 template<class Key, class Value>
-int HashChainTable<Key, Value>::GoNext(void)
+int HashChainTable<Key, Value>::GoNext(void) 
 {
 	if (!(*(vec[curs]) == TList<Row>{})) {
 		if (!vec[curs]->IsNextEnd()){
@@ -156,20 +156,20 @@ int HashChainTable<Key, Value>::GoNext(void)
 }
 
 template<class Key, class Value>
-bool HashChainTable<Key, Value>::IsTabEnded(void) const
+bool HashChainTable<Key, Value>::IsTabEnded(void) const 
 {
 	return this->itemCurs == count + 1;
 }
 
 
 template<class Key, class Value>
-Key HashChainTable<Key, Value>::GetKey(void) const //??
+Key HashChainTable<Key, Value>::GetKey(void) const  
 {
 	if (curs == -1) return NULL;
 	return (vec[this->curs]->GetCurrentItemPtr())->key;
 }
 template<class Key, class Value>
-Value* HashChainTable<Key, Value>::GetValuePtr(void) //??
+Value* HashChainTable<Key, Value>::GetValuePtr(void) 
 {
 	if (curs == -1) return nullptr;
 	if (vec[this->curs]->IsEnd()) {

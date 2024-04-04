@@ -16,6 +16,13 @@ protected:
 		{
 			return pNext;
 		}
+		bool operator==(const TNode<T>& n) {
+			return (this->value == n.value && this->pNext == n.pNext);
+		}
+		
+		bool operator!=(const TNode<T>& n) {
+			return (this->value != n.value || this->pNext != n.pNext);
+		}
 	};
 
 	TNode<T>* pFirst;			// First cell

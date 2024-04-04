@@ -17,21 +17,21 @@ protected:
 		Node* left;
 		Node* right;
 		Node* parent;
-		Node(Key key, Value value) {
+		Node(Key key, Value value) noexcept {
 			left = nullptr;
 			right = nullptr;
 			data.key = key;
 			data.value = value;
 			this->parent = nullptr;
 		}
-		Node(Node* l, Node* r, Key key, Value value) {
+		Node(Node* l, Node* r, Key key, Value value) noexcept {
 			left = l;    
 			right = r;
 			data.key = key;
 			data.value = value;
 			l->parent = r->parent = this;
 		}
-		void operator=(const Node& other) {
+		void operator=(const Node& other) noexcept {
 			parent = other.parent;
 			left = other.left;
 			right = other.right;
@@ -42,28 +42,28 @@ protected:
 public:
 	Node* root;
 
-	SearchTreeTable() 
+	SearchTreeTable()  noexcept
 	{ 
 		//TPolinom p; 
 		//root = new Node(Key(), Value());
 		root = nullptr;
 		//root->parent = nullptr;
 	}
-	SearchTreeTable(int key, TPolinom value) 
+	SearchTreeTable(int key, TPolinom value)noexcept
 	{ 
 		root = new Node(key, value);
 	}
-	SearchTreeTable(SearchTreeTable p1, SearchTreeTable p2, int key, TPolinom value) 
+	SearchTreeTable(SearchTreeTable p1, SearchTreeTable p2, int key, TPolinom value)noexcept
 	{
 		root = new Node(p1.root, p2.root, key, value); 
 		root->parent = nullptr; 
 	}
-	string toString() {
+	string toString()noexcept {
 		string res;
 		res += "(" + std::to_string(root->data.key) + ", " + std::to_string(root->data.value) + ")";
 		return res;
 	}
-	Node* findNode(Key _key, Node* node)
+	Node* findNode(Key _key, Node* node)noexcept
 	{
 		if (node == nullptr) {
 			return nullptr;
@@ -78,7 +78,7 @@ public:
 			return node; // Возвращаем узел, если ключ совпадает
 		}
 	}
-	Node* deleteNode(Node* currentNode, Key _key)
+	Node* deleteNode(Node* currentNode, Key _key)noexcept
 	{
 		if (currentNode == nullptr) return nullptr;
 
@@ -124,7 +124,7 @@ public:
 		}
 		return currentNode;
 	}
-	Node* maxValueNode(Node* node)
+	Node* maxValueNode(Node* node)noexcept
 	{
 		Node* current = node;
 		while (current->right != nullptr) {
@@ -145,7 +145,7 @@ public:
 	Key GetKey(void) const override;
 	Value* GetValuePtr(void) override;
 	
-	void print(Node* node);
+	void print(Node* node) ;
 };
 template<class Key, class Value>
 Value* SearchTreeTable<Key,Value>::GetValuePtr(void) 
@@ -155,13 +155,13 @@ Value* SearchTreeTable<Key,Value>::GetValuePtr(void)
 }
 
 template<class Key, class Value>
-Key SearchTreeTable<Key, Value>::GetKey(void) const {
+Key SearchTreeTable<Key, Value>::GetKey(void) const  {
 	//return this->GetKey(); 
 	return Key();
 }
 
 template<class Key, class Value>
-int SearchTreeTable<Key, Value>::GoNext(void)
+int SearchTreeTable<Key, Value>::GoNext(void) 
 { 
 	return 0;
 }

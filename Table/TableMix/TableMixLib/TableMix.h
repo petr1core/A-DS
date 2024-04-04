@@ -28,7 +28,7 @@ public:
         OATable.Insert(key, p);
         sTree.Insert(key, p);
         AVLTree.Insert(key, p);
-        //HashChain.Insert(key, p);
+        HashChain.Insert(key, p);
         //HashRepeat.Insert(key, p);
        
       
@@ -42,7 +42,7 @@ public:
         OATable.Delete(key);
         sTree.Delete(key);
         AVLTree.Delete(key);
-        //HashChain.Delete(key);
+        HashChain.Delete(key);
         //HashRepeat.Delete(key);
        
        
@@ -103,11 +103,11 @@ public:
                 "\nThere is no item like that in Hash Open-bufferred Table\n";*/
             break;
         case 7: 
-          /*  cout << (HashChain.Find(key) != nullptr)
+            cout << (HashChain.Find(key) != nullptr)
             ?
                 "\nSuccessfully finded in Hash Chain Table\n"
                 :
-                "\nThere is no item like that in Hash Chain Table\n";*/
+                "\nThere is no item like that in Hash Chain Table\n";
             break;
         default: break;
         }

@@ -17,7 +17,7 @@ public:
 		Node* right;
 		Node* parent;
 		int balance;
-		Node(Key key, Value value) {
+		Node(Key key, Value value) noexcept {
 			left = nullptr;
 			right = nullptr;
 			data.key = key;
@@ -25,7 +25,7 @@ public:
 			this->parent = nullptr;
 			balance = 0;
 		}
-		Node(Node* l, Node* r, Key key, Value value) {
+		Node(Node* l, Node* r, Key key, Value value) noexcept {
 			left = l;
 			right = r;
 			data.key = key;
@@ -34,7 +34,7 @@ public:
 			balance = this.update_balance();
 		}
 
-		void update_balance2() {
+		void update_balance2() noexcept {
 			Node* n = this->parent;
 			if (n == nullptr) {
 				if (n->left == this) { this->balance--; }
@@ -45,7 +45,7 @@ public:
 			else { this->balance++; }
 			this->update_balance2();
 		}
-		Node* update_balance() {
+		Node* update_balance() noexcept {
 			if (this != nullptr) {
 				this->balance = get_height(this->right) - get_height(this->left);
 				if ((this->balance == 2) || (this->balance == -2)) { this->balancir(); }
@@ -53,11 +53,11 @@ public:
 			}
 			else return this;
 		}
-		int get_height(Node* node) {
+		int get_height(Node* node) noexcept {
 			if (node == nullptr) return -1;
 			return 1 + max(get_height(node->left), get_height(node->right));
 		}
-		Node* balancir() {
+		Node* balancir() noexcept {
 			if (this->balance == -2)
 			{
 				if (this->left->balance < 0)
@@ -85,7 +85,7 @@ public:
 			}
 			return this;
 		}
-		Node* singleUpLeft() {
+		Node* singleUpLeft() noexcept {
 			Node* B = this->left;
 
 			if (this->parent != nullptr) {
@@ -107,7 +107,7 @@ public:
 			B->update_balance();
 			return B;
 		}
-		Node* singleUpRight() {
+		Node* singleUpRight() noexcept {
 			Node* B = this->right;
 
 			if (this->parent != nullptr) {
@@ -129,7 +129,7 @@ public:
 			B->update_balance();
 			return B;
 		}
-		Node* doubleUpLeft() {
+		Node* doubleUpLeft() noexcept {
 			Node* B = this->left;
 			Node* C = B->right;
 
@@ -174,7 +174,7 @@ public:
 				return B;
 			}
 		}
-		Node* doubleUpRight() {
+		Node* doubleUpRight() noexcept {
 			Node* B = this->right;
 			Node* C = B->left;
 			if (C != nullptr) {
@@ -219,7 +219,7 @@ public:
 				return B;
 			}
 		}
-		void print() {
+		void print() noexcept {
 			if (this == nullptr) return;
 			this->left->print();
 			if (this->parent == nullptr)
@@ -238,38 +238,38 @@ public:
 	};
 	Node* root;
 public:
-	AVLTreeTable() {
+	AVLTreeTable() noexcept {
 		//TPolinom p;
 		//root = new Node(Key(), Value());
 		root = nullptr;
 		//root->balance = 0;
 	}
-	AVLTreeTable(Key key, Value value) {
+	AVLTreeTable(Key key, Value value)  {
 		root = new Node(key, value);
 		root->balance = 0;
 	}
-	AVLTreeTable(AVLTreeTable p1, AVLTreeTable p2, Key key, Value value) {
+	AVLTreeTable(AVLTreeTable p1, AVLTreeTable p2, Key key, Value value)  {
 		root = new Node(p1.root, p2.root, key, value);
 		root->balance = p2.root->balance - p1.root->balance;
 	}
-	string toString() {
+	string toString()  {
 		string res;
 		res += "(" + std::to_string(root->data.key) + ", " + std::to_string(root->data.value) + ", " + std::to_string(root->balance) + ")";
 		return res;
 	}
-	void print2(Node* node) {
+	void print2(Node* node)  {
 		Node* n = node;
 		while (n->parent != nullptr) { n = node->parent; }
 		print2(n);
 	}
 
-	Value* Find(Key key)
+	Value* Find(Key key) 
 	{
 		Node* node = findNode(key, root);
 		if (node == nullptr) { return nullptr; }
 		return &node->data.value;
 	}
-	Node* findNode(Key key, Node* node) {
+	Node* findNode(Key key, Node* node)  {
 		if (node == nullptr) {
 			return nullptr;
 		}
@@ -284,7 +284,7 @@ public:
 		}
 	}
 
-	int Insert(Key _key, Value _val) {
+	int Insert(Key _key, Value _val)  {
 		if (this->Find(_key) != nullptr) {
 			// Узел с таким ключом уже существует, вставка не требуется
 			return 0;
@@ -332,7 +332,7 @@ public:
 			return 1; // Успешная вставка нового узла
 		}
 	}
-	int Delete(Key _key) {
+	int Delete(Key _key) noexcept {
 		if ((this->Find(_key) == nullptr) || (root == nullptr)) {
 			// Узел с таким ключом не существует, удаление не требуется
 			return 0;
@@ -343,7 +343,7 @@ public:
 			return 1; // Успешное удаление узла
 		}
 	}
-	Node* deleteNode(Node* currentNode, Key _key) {
+	Node* deleteNode(Node* currentNode, Key _key)noexcept {
 		if (currentNode == nullptr) return nullptr;
 
 		if (_key < currentNode->data.key) {
@@ -388,7 +388,7 @@ public:
 		}
 		return currentNode;
 	}
-	Node* maxValueNode(Node* node) {
+	Node* maxValueNode(Node* node)  {
 		Node* current = node;
 		while (current->right != nullptr) {
 			current = current->right;
