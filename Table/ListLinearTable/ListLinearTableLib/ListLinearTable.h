@@ -50,22 +50,7 @@ int LinearListTable<Key, Value>::Delete(Key _key)
 		arr.DeleteCurrent();
 		return 0;
 	}
-<<<<<<< HEAD
 	return -1;
-	//for (arr.Reset(); arr.IsEnd(); arr.GoNext()) {
-	//	if (arr.pCurrent.key == _key) {
-	//		if (this->curs == arr.pCurrent)
-	//			this->curs = arr.pCurrent;
-	//		arr.DeleteCurrent();
-	//		this->size--;
-	//	}
-	//	arr.Reset();
-	//	return 0;
-	//}
-	//return -1;*/
-=======
-	else return -1;
->>>>>>> 90fba52c0182518f2aea7c1647d074853de9f5af
 }
 
 template<class Key, class Value>

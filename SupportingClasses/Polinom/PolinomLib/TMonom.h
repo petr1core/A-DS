@@ -18,6 +18,12 @@ public:
 		if (_coef == 0) throw  ("Coef can't be zero");
 		ind = 100 * degX + 10 * degY + degZ;
 	}
+	
+	void SetMonom(double _coef, int degX, int degY, int degZ) {
+		this->coef = _coef;
+		if (_coef == 0) throw  ("Coef can't be zero");
+		this->ind = 100 * degX + 10 * degY + degZ;
+	}
 
 	void SetCoef(int cval) { this->coef = cval; }
 	int GetCoef(void) { return this->coef; }
@@ -32,6 +38,12 @@ public:
 
 	bool operator!=(const TMonom& other) {
 		return this->coef != other.coef || this->ind != other.ind;
+	}
+
+	TMonom& operator=(const TMonom& other) {
+		this->coef = other.coef;
+		this->ind = other.ind;
+		return *this;
 	}
 
 	bool operator>(const TMonom& other) {

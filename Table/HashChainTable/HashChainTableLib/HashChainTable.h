@@ -48,18 +48,18 @@ template<class Key, class Value>
 int HashChainTable<Key, Value>::HashKey(Key _key) const
 {
 	int res = 0;
-	string str = to_string(_key);
+	string str = _key;
 	for (int i = 0; i < str.length(); i++)
 		res += str[i];
 	return res % this->maxsize;
 }
-
 
 template<class Key, class Value>
 Value* HashChainTable<Key, Value>::Find(Key _key)
 {
 	int t = this->HashKey(_key);
 	if (this->IsEmpty()) return nullptr;
+	if (vec[t] == empty) return nullptr;
 	vec[t]->Reset();
 	return &(vec[t]->GetCurrentItemPtr()->value);
 }

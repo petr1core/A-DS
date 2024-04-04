@@ -1,19 +1,18 @@
 #pragma once
 #include "TreeAVLTableLib/SearchTreeTable.h"
+#include "Polinom/PolinomLib/TPolinom.h"
 using namespace std;
 
 template<class Key, class Value>
-int SearchTreeTable<Key, Value>::number = 0;
-template<class Key, class Value>
 class AVLTreeTable : public SearchTreeTable<Key, Value> {
 public:
-	struct Table {
+	/*struct Table {
 		Key key;
 		Value value;
-	};
+	};*/
 	struct Node
 	{
-		Table data;
+		Row data;
 		Node* left;
 		Node* right;
 		Node* parent;
@@ -63,21 +62,25 @@ public:
 			{
 				if (this->left->balance < 0)
 				{
-					cout << "1" << endl; this->singleUpLeft();  return this;
+					cout << "1" << endl; this->singleUpLeft();  
+					return this;
 				}
 				if (this->left->balance > 0)
 				{
-					cout << "2" << endl; this->doubleUpLeft();  return this;
+					cout << "2" << endl; this->doubleUpLeft();  
+					return this;
 				}
 			}
 			if (this->balance == 2) {
 				if (this->right->balance < 0)
 				{
-					cout << "3" << endl; this->singleUpRight(); return this;
+					cout << "3" << endl; this->singleUpRight(); 
+					return this;
 				}
 				if (this->right->balance > 0)
 				{
-					cout << "4" << endl; this->doubleUpRight(); return this;
+					cout << "4" << endl; this->doubleUpRight(); 
+					return this;
 				}
 			}
 			return this;
@@ -130,7 +133,8 @@ public:
 			Node* B = this->left;
 			Node* C = B->right;
 
-			if (this->parent != nullptr) {
+			if(C != nullptr) {
+				if (this->parent != nullptr) {
 				if (this == ((this->parent)->left)) {
 					C->parent = this->parent;
 					(C->parent)->left = C;
@@ -151,34 +155,69 @@ public:
 			this->update_balance();
 			B->update_balance();
 			C->update_balance();
-			return C;
+			return C; }
+			else {
+				B->right = this;
+				if (this->parent != nullptr) {
+					if (this == ((this->parent)->left)) {
+						B->parent = this->parent;
+						(B->parent)->left = B;
+					}
+					else {
+						B->parent = this->parent;
+						(B->parent)->right = B;
+					}
+				}
+				else { B->parent = this->parent; }
+				this->parent = B;
+				this->left= nullptr;
+				return B;
+			}
 		}
 		Node* doubleUpRight() {
 			Node* B = this->right;
 			Node* C = B->left;
+			if (C != nullptr) {
+				if (this->parent != nullptr) {
+					if (this == ((this->parent)->left)) {
+						C->parent = this->parent;
+						(C->parent)->left = C;
+					}
+					else {
+						(C->parent)->right = C;
+						C->parent = this->parent;
+					}
+				}
+				else { C->parent = this->parent; }
 
-			if (this->parent != nullptr) {
-				if (this == ((this->parent)->left)) {
-					C->parent = this->parent;
-					(C->parent)->left = C;
-				}
-				else {
-					(C->parent)->right = C;
-					C->parent = this->parent;
-				}
+				B->left = C->right;
+				C->right = B;
+				this->right = C->left;
+				C->left = this;
+				B->parent = C;
+				this->parent = C;
+				this->update_balance();
+				B->update_balance();
+				C->update_balance();
+				return C;
 			}
-			else { C->parent = this->parent; }
-
-			B->left = C->right;
-			C->right = B;
-			this->right = C->left;
-			C->left = this;
-			B->parent = C;
-			this->parent = C;
-			this->update_balance();
-			B->update_balance();
-			C->update_balance();
-			return C;
+			else {
+				B->left = this;
+				if (this->parent != nullptr) {
+					if (this == ((this->parent)->left)) { 
+						B->parent = this->parent;
+						(B->parent)->left = B;
+					}
+					else {
+						B->parent = this->parent;
+						(B->parent)->right = B;
+					}
+				}
+				else { B->parent = this->parent; }
+				this->parent = B;
+				this->right = nullptr;
+				return B;
+			}
 		}
 		void print() {
 			if (this == nullptr) return;
@@ -200,14 +239,16 @@ public:
 	Node* root;
 public:
 	AVLTreeTable() {
-		TPolinom p; root = new Node(2, p);
-		root->balance = 0;
+		//TPolinom p;
+		//root = new Node(Key(), Value());
+		root = nullptr;
+		//root->balance = 0;
 	}
-	AVLTreeTable(int key, int value) {
+	AVLTreeTable(Key key, Value value) {
 		root = new Node(key, value);
 		root->balance = 0;
 	}
-	AVLTreeTable(AVLTreeTable p1, AVLTreeTable p2, int key, int value) {
+	AVLTreeTable(AVLTreeTable p1, AVLTreeTable p2, Key key, Value value) {
 		root = new Node(p1.root, p2.root, key, value);
 		root->balance = p2.root->balance - p1.root->balance;
 	}
@@ -253,6 +294,8 @@ public:
 			Node* new_node = new Node(_key, _val);
 			if (root == nullptr) {
 				root = new_node; // ≈сли дерево пустое, новый узел становитс€ корнем
+				root->balance = 0;
+				root->parent = nullptr;
 				return 1; // ”спешна€ вставка нового узла
 			}
 			Node* current = root;

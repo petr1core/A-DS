@@ -7,14 +7,13 @@ using namespace std;
 template<class Key, class Value>
 class SearchTreeTable : public Table<Key, Value> {
 protected:
-	struct Table {
+	/*struct Table {
 		Key key;
 		Value value;
-	};
+	};*/
 	struct Node
 	{
-		int nomer;
-		Table data;
+		Row data;
 		Node* left;
 		Node* right;
 		Node* parent;
@@ -23,16 +22,14 @@ protected:
 			right = nullptr;
 			data.key = key;
 			data.value = value;
-			number++; 
-			this->nomer = number;
 			this->parent = nullptr;
 		}
 		Node(Node* l, Node* r, Key key, Value value) {
-			left = l;    right = r;
+			left = l;    
+			right = r;
 			data.key = key;
 			data.value = value;
 			l->parent = r->parent = this;
-			number++;   this->nomer = number;
 		}
 		void operator=(const Node& other) {
 			parent = other.parent;
@@ -40,18 +37,17 @@ protected:
 			right = other.right;
 			data.key = other.data.key;
 			data.value = other.data.value;
-			nomer = other.nomer;
 		}
 	};
-	static int number;
 public:
 	Node* root;
 
 	SearchTreeTable() 
 	{ 
-		TPolinom p; 
-		root = new Node(2, p);
-		root->parent = nullptr;
+		//TPolinom p; 
+		//root = new Node(Key(), Value());
+		root = nullptr;
+		//root->parent = nullptr;
 	}
 	SearchTreeTable(int key, TPolinom value) 
 	{ 
@@ -208,6 +204,7 @@ int SearchTreeTable<Key, Value>::Insert(Key _key, Value _val)
 		Node* new_node = new Node(_key, _val);
 		if (root == nullptr) {
 			root = new_node; // ≈сли дерево пустое, новый узел становитс€ корнем
+			root->parent = nullptr;
 			return 1; // ”спешна€ вставка нового узла
 		}
 		Node* current = root;
@@ -254,7 +251,7 @@ void SearchTreeTable<Key, Value>::print(Node* node)
 		cout << "Parent: " << node->parent->data.key << ", ";
 	cout << "Key:" << node->data.key << ", Value: " << node->data.value.ToString() << ", Left potomok: ";
 	if (node->left == nullptr)
-		cout << "null, ";
+		cout << "null, Right potomok: ";
 	else { cout << node->left->data.key << " Right Potomok: "; }
 	if (node->right == nullptr)
 		cout << "null " << ")" << endl;

@@ -19,15 +19,15 @@ protected:
 			key = k;
 			value = v;
 		}
-		Row(const Row& row) {
+		Row(Row& row) {
 			key = row.key;
 			value = row.value;
 		}
 		bool operator==(const Row& r) const{
-			return (this->key == r.key && this->value == r.value);
+			return (key == r.key && value == r.value);
 		}
 		bool operator!=(const Row& r) const {
-			return (this->key != r.key || this->value != r.value);
+			return !(this==r);
 		}
 	};
 	int size = 0;

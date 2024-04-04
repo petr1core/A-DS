@@ -10,39 +10,104 @@
 #include "ArrLinearTableLib/ArrLinearTable.h"
 using namespace std;
 
+template<class Key, class Value>
 class MixTable {
-private:
-    SearchTreeTable <string, TPolinom> sTree;
-    AVLTreeTable <string, TPolinom> AVLTree;
+private: 
+    LinearArrTable<Key, Value> LATable;
+    LinearListTable<Key, Value> ListTable;
+    OrderedArrTable<Key, Value> OATable;
+    SearchTreeTable <Key, Value> sTree;
+    AVLTreeTable <Key, Value> AVLTree;
+    HashChainTable<Key, Value> HashChain;
+    HashRepeatTable<Key, Value> HashRepeat;
+    int size = 0;
 public:
-    void Add(string key, TPolinom p) {
+    void Add(Key key, Value p) {
+        LATable.Insert(key, p);
+        ListTable.Insert(key, p);
+        OATable.Insert(key, p);
         sTree.Insert(key, p);
         AVLTree.Insert(key, p);
+        //HashChain.Insert(key, p);
+        //HashRepeat.Insert(key, p);
+       
+      
+       
+        size++;
     }
 
-    void Delete(string key) {
+    void Delete(Key key) {
+        LATable.Delete(key);
+        ListTable.Delete(key);
+        OATable.Delete(key);
         sTree.Delete(key);
         AVLTree.Delete(key);
+        //HashChain.Delete(key);
+        //HashRepeat.Delete(key);
+       
+       
+       
+        size--;
     }
     void print() {
         sTree.print(sTree.root);
+        cout << endl;
         AVLTree.root->print();
     }
-    void Find(int id, string key) {
+    int GetSize(void) {
+        return this->size;
+    }
+
+    void Find(int id, Key key) {
         switch (id) {
-        case 1: //поиск в линейной на массиве
+        case 1: 
+           cout << (LATable.Find(key) != nullptr) 
+                ? 
+                "\nSuccessfully finded in Linear Array Table\n" 
+                : 
+                "\nThere is no item like that in Linear Array Table\n";
             break;
-        case 2: //поиск в линейной на списке
+        case 2: 
+            cout << (ListTable.Find(key) != nullptr)
+                ?
+                "\nSuccessfully finded in Linear List Table\n"
+                :
+                "\nThere is no item like that in Linear List Table\n";
             break;
-        case 3:  //поиск в упорядоченной на массиве
+        case 3:  
+            cout << (OATable.Find(key) != nullptr)
+                ?
+                "\nSuccessfully finded in Ordered Array Table\n"
+                :
+                "\nThere is no item like that in Ordered Array Table\n";
             break;
-        case 4: sTree.Find(key);
+        case 4: 
+            cout << (sTree.Find(key) != nullptr)
+                ?
+                "\nSuccessfully finded in Search Tree Table\n"
+                :
+                "\nThere is no item like that in Search Tree Table\n";
             break;
-        case 5: AVLTree.Find(key);
+        case 5: 
+            cout << (AVLTree.Find(key) != nullptr)
+                ?
+                "\nSuccessfully finded in AVL Tree Table\n"
+                :
+                "\nThere is no item like that in AVL Tree Table\n";
             break;
-        case 6: //поиск в хеше1
+        case 6: 
+            /*cout << (HashRepeat.Find(key) != nullptr)
+            ?
+                "\nSuccessfully finded in Hash Open-bufferred Table\n"
+                :
+                "\nThere is no item like that in Hash Open-bufferred Table\n";*/
             break;
-        case 7: //поиск в хеше2 
+        case 7: 
+          /*  cout << (HashChain.Find(key) != nullptr)
+            ?
+                "\nSuccessfully finded in Hash Chain Table\n"
+                :
+                "\nThere is no item like that in Hash Chain Table\n";*/
             break;
         default: break;
         }

@@ -4,7 +4,15 @@
 using namespace std;
 
 const int MAX_SIZE = 26;
-void menu()
+const int NAME_SIZE = 5;
+const char letters[MAX_SIZE] = { 
+        'a','b','c','d','e','f',
+        'g','h','i','j','k','l',
+        'm','n','o','p','q','r',
+        's','t','u','v','w','x',
+        'y','z' 
+    };
+void menu(void)
 {
     printf("\n1. Выбрать элемент в линейной таблице на массиве\n");
     printf("2. Выбрать элемент в линейной таблице на списке\n");
@@ -18,29 +26,36 @@ void menu()
     printf("10. Выход\n");
 }
 
+void info(MixTable<string, TPolinom>& tab, const vector<string>& keys) {
+    if (tab.GetSize() != 0)
+        cout << "\nSize = " << tab.GetSize() << "\nKeys:";
+    else 
+        cout << "\nSize = 0"  << "\nKeys:";
+
+    for (int i = 0; i < keys.size(); i++) {
+        cout << "\n" << keys[i];
+    }
+}
+
 string generate_rand_string() {
-    srand(time(0));
+    srand(time(NULL));
     string str = "";
-    for (inti = 0; i < n; i++)
-        ran = ran + letters[rand() % MAX_SIZE];
+    for (int i = 0; i < NAME_SIZE; i++)
+        str = str + letters[rand() % MAX_SIZE];
     return str;
 }
 
 int main() {
     
-    char letters[MAX_SIZE] = { 
-        'a','b','c','d','e','f',
-        'g','h','i','j','k','l',
-        'm','n','o','p','q','r',
-        's','t','u','v','w','x',
-        'y','z' 
-    };
 
     setlocale(LC_ALL, "Russian");
     TPolinom p;
-    MixTable t;
+    TMonom newMonom;
+    MixTable<string, TPolinom> t;
+    vector<string> key_arr;
     srand(time(NULL));
-
+    string key; 
+    int s;
     double start, end;
     bool stop = false;
     while (!stop) {
@@ -92,18 +107,29 @@ int main() {
             break;
         case 8:
             start = clock();
+            key = generate_rand_string();
+            key_arr.push_back(key);
+            newMonom.SetMonom(
+                rand() % (10 - 1 + 1) + 1,
+                rand() % (10 - 1 + 1) + 1,
+                rand() % (10 - 1 + 1) + 1,
+                rand() % (10 - 1 + 1) + 1
+            );
+            p.AddMonom(newMonom);
             t.Add(key, p);
+            info(t, key_arr);
+            cout << endl;
+            t.print();
             end = clock();
-            cout << (end - start) / CLOCKS_PER_SEC << endl;
+            cout << "\ntime: " << (end - start) / CLOCKS_PER_SEC << endl;
             break;
         case 9:
-            int how;
-            cout << "Хотите задать имя самостоятельно?\n1 - да\n2 - нет" << endl;
-                cin >> how;
+            info(t,key_arr);
             start = clock();
-            t.Delete(key);
+            t.Delete(key_arr[key_arr.size() - 1]);
+            key_arr.pop_back();
             end = clock();
-            cout << (end - start) / CLOCKS_PER_SEC << endl;
+            cout << "\ntime: " << (end - start) / CLOCKS_PER_SEC << endl;
             break;
         case 10:
             stop = true;
@@ -114,3 +140,4 @@ int main() {
     }
     t.print();
 }
+

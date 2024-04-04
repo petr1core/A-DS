@@ -47,7 +47,7 @@ template<class Key, class Value>
 int HashRepeatTable<Key, Value>::HashKey(Key _key) const
 {
 	int sum = 0;
-	string str = to_string(_key);
+	string str = _key;
 	for (int i = 0; i < str.length(); i++)
 		sum += str[i];
 	return sum % this->maxsize;
