@@ -19,10 +19,14 @@ protected:
 			key = k;
 			value = v;
 		}
-		Row(Row& row) noexcept {
+		Row(const Row& row) noexcept { ////////////////////////
 			key = row.key;
 			value = row.value;
 		}
+		//Row(const Row& row) noexcept { ////////////////////////
+		//	key = row.key;
+		//	value = row.value;
+		//}
 		bool operator==(const Row& r) noexcept{
 			return (key == r.key && value == r.value);
 		}

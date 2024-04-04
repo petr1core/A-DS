@@ -16,8 +16,10 @@ class TPolinom : public THeadList<TMonom>
 public:
 	TPolinom();
 	TPolinom(const TPolinom& other);
+	TPolinom(TPolinom& other);
+
 	TPolinom(string str);
-	TPolinom& operator=(TPolinom& other);
+	TPolinom& operator=(const TPolinom& other);
 	TPolinom& operator+(TPolinom& q);
 
 
@@ -40,6 +42,16 @@ TPolinom::TPolinom(const TPolinom& other)//
 		h = h->pNext;
 	}
 	
+}
+TPolinom::TPolinom( TPolinom& other)//
+{
+	pHead = new TNode<TMonom>;
+	TNode<TMonom>* h = other.pHead->pNext;
+	while (h != other.pStop) {
+		this->AddMonom(h->value);
+		h = h->pNext;
+	}
+
 }
 
 TPolinom::TPolinom(string str)//
@@ -82,7 +94,7 @@ TPolinom::TPolinom(string str)//
 	}
 }
 
-TPolinom& TPolinom::operator=(TPolinom& other)//
+TPolinom& TPolinom::operator=(const TPolinom& other)//
 {
 	if (this != &other) {
 		while (!this->IsEmpty()) {

@@ -26,10 +26,10 @@ public:
         LATable.Insert(key, p);
         ListTable.Insert(key, p);
         OATable.Insert(key, p);
+        HashChain.Insert(key, p);
+        HashRepeat.Insert(key, p);
         sTree.Insert(key, p);
         AVLTree.Insert(key, p);
-        HashChain.Insert(key, p);
-        //HashRepeat.Insert(key, p);
        
       
        
@@ -40,10 +40,10 @@ public:
         LATable.Delete(key);
         ListTable.Delete(key);
         OATable.Delete(key);
+        HashChain.Delete(key);
+        HashRepeat.Delete(key);
         sTree.Delete(key);
         AVLTree.Delete(key);
-        HashChain.Delete(key);
-        //HashRepeat.Delete(key);
        
        
        
@@ -53,6 +53,8 @@ public:
         sTree.print(sTree.root);
         cout << endl;
         AVLTree.root->print();
+        cout << endl;
+        // остальные выводы //
     }
     int GetSize(void) {
         return this->size;
@@ -96,11 +98,11 @@ public:
                 "\nThere is no item like that in AVL Tree Table\n";
             break;
         case 6: 
-            /*cout << (HashRepeat.Find(key) != nullptr)
+            cout << (HashRepeat.Find(key) != nullptr)
             ?
                 "\nSuccessfully finded in Hash Open-bufferred Table\n"
                 :
-                "\nThere is no item like that in Hash Open-bufferred Table\n";*/
+                "\nThere is no item like that in Hash Open-bufferred Table\n";
             break;
         case 7: 
             cout << (HashChain.Find(key) != nullptr)

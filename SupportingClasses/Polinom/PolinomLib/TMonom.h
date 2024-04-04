@@ -12,6 +12,14 @@ public:
 		coef = 0;
 		ind = 0;
 	}
+	TMonom(const TMonom& m) {
+		this->coef = m.coef;
+		this->ind = m.ind;
+	}
+	TMonom(TMonom& m) {
+		this->coef = m.coef;
+		this->ind = m.ind;
+	}
 
 	TMonom(double _coef, int degX, int degY, int degZ) {
 		coef = _coef;
