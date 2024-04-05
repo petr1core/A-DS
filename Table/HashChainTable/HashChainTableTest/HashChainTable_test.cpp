@@ -1,6 +1,5 @@
 #include <gtest.h>
 #include "HashChainTableLib/HashChainTable.h"
-///////
 
 TEST(HashChainTable, Created_HashChainTable_with_one_el) {
 	HashChainTable <int, string> t;

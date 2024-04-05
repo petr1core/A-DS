@@ -48,7 +48,7 @@ template<class Key, class Value>
 int HashChainTable<Key, Value>::HashKey(Key _key) const 
 {
 	int res = 0;
-	string str = _key;
+	string str = to_string(_key);
 	for (int i = 0; i < str.length(); i++)
 		res += str[i];
 	return res % this->maxsize;
@@ -57,8 +57,9 @@ int HashChainTable<Key, Value>::HashKey(Key _key) const
 template<class Key, class Value>
 Value* HashChainTable<Key, Value>::Find(Key _key) 
 {
-	int t = this->HashKey(_key);
 	if (this->IsEmpty()) return nullptr;
+	int t = this->HashKey(_key);
+	if (vec.size() <= t) return nullptr;
 	if (vec[t] == nullptr) return nullptr;
 	vec[t]->Reset();
 	return &(vec[t]->GetCurrentItemPtr()->value);
@@ -102,6 +103,7 @@ int HashChainTable<Key, Value>::Delete(Key _key)
 	if (this->IsEmpty()) return -1;
 	if (this->count > 1) {
 		int t = this->HashKey(_key);
+		if (vec.size() <= t) return -1;
 		vec[t] = nullptr;
 		count--;
 		size--;
@@ -126,8 +128,8 @@ void HashChainTable<Key, Value>::Reset(void)
 template<class Key, class Value>
 int HashChainTable<Key, Value>::GoNext(void) 
 {
-	if (!(vec[curs] == nullptr)) {
-		if (!vec[curs]->IsNextEnd()){
+	if (!(vec[curs] == nullptr) && vec[curs]->GetLength() > 1) {
+		if (!vec[curs]->IsNextEnd() ) {
 			vec[curs]->GoNext();
 		return 0;
 		}

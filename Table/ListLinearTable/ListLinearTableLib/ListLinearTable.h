@@ -1,4 +1,5 @@
 #include "TableBaseLib/TableBase.h"
+#include "Polinom/PolinomLib/List.h"
 #include <vector>
 using namespace std;
 
@@ -28,6 +29,7 @@ Value* LinearListTable<Key, Value>::Find(Key _key)
 			return &(*arr.GetCurrentItemPtr()).value;
 		}
 	}
+	arr.PointToFirst();
 	return nullptr;
 }
 
@@ -35,11 +37,6 @@ template<class Key, class Value>
 int LinearListTable<Key, Value>::Insert(Key _key, Value _val)
 {
 	if (this->IsFull()) return -1;
-	/*if (this->IsEmpty()) {
-		arr.InsertLast({ _key,_val });
-		size++;
-		return 0;
-	}*/
 	if (this->Find(_key) == nullptr)
 		arr.InsertLast({ _key,_val });
 	else return -1; // already exists
@@ -86,6 +83,5 @@ Key LinearListTable<Key, Value>::GetKey(void) const
 template<class Key, class Value>
 Value* LinearListTable<Key, Value>::GetValuePtr(void)
 {
-	//return &(this->curs->value).value;
 	return &(*arr.GetCurrentItemPtr()).value;
 }

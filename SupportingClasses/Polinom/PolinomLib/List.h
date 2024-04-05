@@ -62,11 +62,16 @@ public:
 	T* GetCurrentItemPtr() const;
 	int SetCurrentItem(T item);
 
+	void PointToFirst(void); // makes current item = first item
+
 	bool operator==(const TList<T>& other) const;
 	//bool operator!=(const TList<T>& other) const;
 };
 
-
+template<class T>
+void TList<T>::PointToFirst(void) {
+	pCurrent = pFirst;
+}
 
 template<class T>
 TList<T>::TList() {
@@ -130,15 +135,16 @@ template<class T>
 void TList<T>::InsertLast(T item)
 {
 	TNode<T>* n = new TNode<T>{ item, nullptr };
-	if (pFirst == NULL && length == 0) {
-		pLast = n;
-		pFirst = pCurrent = pLast;
+	if (pFirst == NULL && this->length == 0) {
+		this->pLast = n;
+		this->pFirst = n;
+		this->pCurrent = n;
 	}
 	else {
-		pLast->pNext = n;
-		pLast = n;
+		this->pLast->pNext = n;
+		this->pLast = n;
 	}
-	length++;
+	this->length++;
 }
 
 template<class T>
