@@ -16,7 +16,6 @@ private:
 	int steps = -1;
 protected:
 	int HashKey(Key _key) const;
-	int Rehash(Key _key, int seed) const;
 public:
 	double Getfullness(void) const;
 	int GetCount(void) const;
@@ -47,21 +46,10 @@ template<class Key, class Value>
 int HashRepeatTable<Key, Value>::HashKey(Key _key) const 
 {
 	int sum = 0;
-	string str = _key;
-	for (int i = 0; i < str.length(); i++)
-		sum += str[i];
-	return sum % this->maxsize;
-}
-
-template<class Key, class Value>
-int HashRepeatTable<Key, Value>::Rehash(Key _key, int seed) const 
-{
-	int sum = seed;
 	string str = to_string(_key);
 	for (int i = 0; i < str.length(); i++)
 		sum += str[i];
 	return sum % this->maxsize;
-
 }
 
 template<class Key, class Value>
@@ -69,11 +57,14 @@ Value* HashRepeatTable<Key, Value>::Find(Key _key)
 {
 	if (this->IsEmpty()) return nullptr;
 	int id = this->HashKey(_key);
-	while (vec[id].key != _key && vec[id].key != Key())
-		id = (id + 1) % this->maxsize;
-
 	if (vec.size() <= id || vec[id].key == Key()) return nullptr;
-	return &vec[id].value;
+	/*while (vec[id].key != _key && vec[id].key != Key())
+		id = (id + 1) % this->maxsize;*/
+	for (this->Reset(); !this->IsTabEnded(); this->GoNext()) {
+		if (vec[id].key == _key)
+			return &vec[id].value;
+	}
+	return nullptr;
 }
 
 

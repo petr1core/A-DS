@@ -169,7 +169,7 @@ int SearchTreeTable<Key, Value>::GoNext(void)
 template<class Key, class Value>
 bool SearchTreeTable<Key, Value>::IsTabEnded(void) const 
 { 
-	return false;
+	return true;
 }
 
 template<class Key, class Value>
@@ -184,16 +184,16 @@ int SearchTreeTable<Key, Value>::Delete(Key _key)
 {
 	if ((this->Find(_key) == nullptr) || (root == nullptr)) {
 		// Узел с таким ключом не существует, удаление не требуется
-		return 0;
+		return 1;
 	}
 	else {
 		root = deleteNode(root, _key);
-		return 1; // Успешное удаление узла
+		return 0; // Успешное удаление узла
 	}
 }
 
 template<class Key, class Value>
-int SearchTreeTable<Key, Value>::Insert(Key _key, Value _val) 
+int SearchTreeTable<Key, Value>::Insert(Key _key, Value _val)
 {
 	if (this->Find(_key) != nullptr) {
 		// Узел с таким ключом уже существует, вставка не требуется
@@ -205,7 +205,7 @@ int SearchTreeTable<Key, Value>::Insert(Key _key, Value _val)
 		if (root == nullptr) {
 			root = new_node; // Если дерево пустое, новый узел становится корнем
 			root->parent = nullptr;
-			return 1; // Успешная вставка нового узла
+			return 0; // Успешная вставка нового узла
 		}
 		Node* current = root;
 		Node* parent = nullptr;
@@ -227,7 +227,7 @@ int SearchTreeTable<Key, Value>::Insert(Key _key, Value _val)
 			parent->right = new_node;
 		}
 		new_node->parent = parent;
-		return 1; // Успешная вставка нового узла
+		return 0; // Успешная вставка нового узла
 	}
 }
 
