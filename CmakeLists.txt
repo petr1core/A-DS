@@ -1,0 +1,78 @@
+cmake_minimum_required(VERSION 3.5)
+set(PROJECT_NAME PoliAlgebra)
+project(${PROJECT_NAME})
+
+### Tables
+set(TableBase TableBase)
+set(TableBaseTest TableBaseTest)
+set(TableBaseLib TableBaseLib)
+
+set(ListLinearTable ListLinearTable)
+set(ListLinearTableTest ListLinearTableTest)
+set(ListLinearTableLib ListLinearTableLib)
+
+set(ArrLinearTable ArrLinearTable)
+set(ArrLinearTableTest ArrLinearTableTest)
+set(ArrLinearTableLib ArrLinearTableLib)
+
+set(ArrOrderedTable ArrOrderedTable)
+set(ArrOrderedTableTest ArrOrderedTableTest)
+set(ArrOrderedTableLib ArrOrderedTableLib)
+
+set(HashChainTable HashChainTable)
+set(HashChainTableTest HashChainTableTest)
+set(HashChainTableLib HashChainTableLib)
+
+set(HashRepeatTable HashRepeatTable)
+set(HashRepeatTableTest HashRepeatTableTest)
+set(HashRepeatTableLib HashRepeatTableLib)
+
+set(TreeAVLTable TreeAVLTable)
+set(TreeAVLTableTest TreeAVLTableTest)
+set(TreeAVLTableLib TreeAVLTableLib)
+
+### Table Interface
+
+set(TableMix TableMix)
+set(TableMixTest TableMixTest)
+set(TableMixLib TableMixLib)
+
+### Polinom
+
+set(Polinom Polinom)
+set(PolinomTest PolinomTest)
+set(PolinomLib PolinomLib)
+
+### Supporting Classes
+
+set(Stack Stack)
+set(StackTest StackTest)
+set(StackLib StackLib)
+
+set(List List)
+set(ListTest ListTest)
+set(ListLib ListLib)
+
+set(Postfix Postfix)
+set(PostfixTest PostfixTest)
+set(PostfixLib PostfixLib)
+
+### 
+
+set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+
+set(CMAKE_CONFIGURATION_TYPES "Debug;Release" CACHE STRING "Configs" FORCE)
+if(NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE Release)
+endif()
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/gtest)
+add_subdirectory(gtest)
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/SupportingClasses)
+add_subdirectory(SupportingClasses)
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/Table)
+add_subdirectory(Table)
+
+

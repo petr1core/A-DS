@@ -1,0 +1,19 @@
+cmake_minimum_required(VERSION 3.5)
+
+set(PROJECT_NAME HashChainTable)
+project(${PROJECT_NAME})
+
+set(CMAKE_CONFIGURATION_TYPES "DEBUG;RELEASE" CACHE STRING "Configs" FORCE)
+if (NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Release)
+endif()
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/HashChainTableLib)
+add_subdirectory(HashChainTableLib)
+add_subdirectory(HashChainTableTest)
+
+file(GLOB srcs "*.cpp")
+add_executable(${PROJECT_NAME} ${srcs})
+target_link_libraries(${PROJECT_NAME} ${HashChainTableLib} gtest)
+
+#HashChainTable
