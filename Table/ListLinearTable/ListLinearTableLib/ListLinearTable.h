@@ -35,11 +35,6 @@ template<class Key, class Value>
 int LinearListTable<Key, Value>::Insert(Key _key, Value _val)
 {
 	if (this->IsFull()) return -1;
-	/*if (this->IsEmpty()) {
-		arr.InsertLast({ _key,_val });
-		size++;
-		return 0;
-	}*/
 	if (this->Find(_key) == nullptr)
 		arr.InsertLast({ _key,_val });
 	else return -1; // already exists
