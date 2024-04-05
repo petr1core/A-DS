@@ -10,7 +10,7 @@ template<class Key, class Value>
 class HashChainTable : public Table<Key, Value>
 {
 	vector<TList<Row>*> vec;
-	TList<Row>* empty = new TList<Row>();
+	//TList<Row>* empty = new TList<Row>();
 	int curs = -1;
 	int count = 0; // not empty els in vec
 	int itemCurs = -1;
@@ -59,7 +59,7 @@ Value* HashChainTable<Key, Value>::Find(Key _key)
 {
 	int t = this->HashKey(_key);
 	if (this->IsEmpty()) return nullptr;
-	if (vec[t] == empty) return nullptr;
+	if (vec[t] == nullptr) return nullptr;
 	vec[t]->Reset();
 	return &(vec[t]->GetCurrentItemPtr()->value);
 }
@@ -73,7 +73,7 @@ int HashChainTable<Key, Value>::Insert(Key _key, Value _val)
 		if ((t + 1) <= this->maxsize) {
 			TList<Row>* newlist = new TList<Row>();
 			newlist->InsertLast({ _key, _val });
-			vec.resize(t,empty);
+			vec.resize(t,nullptr);
 			vec.push_back(newlist);
 			count++;
 			size = vec.size();
@@ -84,16 +84,14 @@ int HashChainTable<Key, Value>::Insert(Key _key, Value _val)
 		}
 		else return -1; // reached max
 	}
-	if (*(vec[t]) == TList<Row>{}) {  // if cell[t] has no TList in
+	if (vec[t] == nullptr) {  // if cell[t] has no TList in
 		TList<Row>* newlist = new TList<Row>();
 		newlist->InsertLast({ _key, _val });
 		vec[t] = newlist;
 		count++;
-		size++;
 	}
 	else {   // if cell [t] already has TList in
 		vec[t]->InsertLast({ _key, _val });
-		size++;
 	}
 	return 0;
 }
@@ -104,7 +102,7 @@ int HashChainTable<Key, Value>::Delete(Key _key)
 	if (this->IsEmpty()) return -1;
 	if (this->count > 1) {
 		int t = this->HashKey(_key);
-		vec[t] = empty;
+		vec[t] = nullptr;
 		count--;
 		size--;
 	}
@@ -128,7 +126,7 @@ void HashChainTable<Key, Value>::Reset(void)
 template<class Key, class Value>
 int HashChainTable<Key, Value>::GoNext(void) 
 {
-	if (!(*(vec[curs]) == TList<Row>{})) {
+	if (!(vec[curs] == nullptr)) {
 		if (!vec[curs]->IsNextEnd()){
 			vec[curs]->GoNext();
 		return 0;
@@ -137,9 +135,9 @@ int HashChainTable<Key, Value>::GoNext(void)
 			do {
 				curs = (curs + 1) % size;
 
-			} while (*(vec[curs]) == TList<Row>());
+			} while (vec[curs] == nullptr);
 
-			if (count != 0 && !(*(vec[curs]) == TList<Row>()))
+			if (count != 0 && !(vec[curs] == nullptr))
 				this->itemCurs++;
 		}
 	}
@@ -147,9 +145,9 @@ int HashChainTable<Key, Value>::GoNext(void)
 			do {
 				curs = (curs + 1) % size;
 
-			} while (*(vec[curs]) == TList<Row>());
+			} while (vec[curs] == nullptr);
 
-			if (count != 0 && !(*(vec[curs]) == TList<Row>()))
+			if (count != 0 && !(vec[curs] == nullptr))
 				this->itemCurs++;
 	}
 	return 0;

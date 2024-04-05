@@ -1,4 +1,4 @@
-#include <iostream>
+п»ї#include <iostream>
 #include <string>
 #include "TableMixLib/TableMix.h"
 using namespace std;
@@ -14,25 +14,25 @@ const char letters[MAX_SIZE] = {
     };
 void menu(void)
 {
-    printf("\n1. Выбрать элемент в линейной таблице на массиве\n");
-    printf("2. Выбрать элемент в линейной таблице на списке\n");
-    printf("3. Выбрать элемент в упорядоченной таблице на массиве\n");
-    printf("4. Выбрать элемент в дереве поиска\n");
-    printf("5. Выбрать элемент в дереве AVL\n");
-    printf("6. Выбрать элемент в хэш-таблице с повторением\n");
-    printf("7. Выбрать элемент в хэш-таблице цепочкой\n");
-    printf("8. Добавить элемент\n");
-    printf("9. Удалить элемент\n");
-    printf("10. Выход\n");
+    printf("\n1. Р’С‹Р±СЂР°С‚СЊ СЌР»РµРјРµРЅС‚ РІ Р»РёРЅРµР№РЅРѕР№ С‚Р°Р±Р»РёС†Рµ РЅР° РјР°СЃСЃРёРІРµ\n");
+    printf("2. Р’С‹Р±СЂР°С‚СЊ СЌР»РµРјРµРЅС‚ РІ Р»РёРЅРµР№РЅРѕР№ С‚Р°Р±Р»РёС†Рµ РЅР° СЃРїРёСЃРєРµ\n");
+    printf("3. Р’С‹Р±СЂР°С‚СЊ СЌР»РµРјРµРЅС‚ РІ СѓРїРѕСЂСЏРґРѕС‡РµРЅРЅРѕР№ С‚Р°Р±Р»РёС†Рµ РЅР° РјР°СЃСЃРёРІРµ\n");
+    printf("4. Р’С‹Р±СЂР°С‚СЊ СЌР»РµРјРµРЅС‚ РІ РґРµСЂРµРІРµ РїРѕРёСЃРєР°\n");
+    printf("5. Р’С‹Р±СЂР°С‚СЊ СЌР»РµРјРµРЅС‚ РІ РґРµСЂРµРІРµ AVL\n");
+    printf("6. Р’С‹Р±СЂР°С‚СЊ СЌР»РµРјРµРЅС‚ РІ С…СЌС€-С‚Р°Р±Р»РёС†Рµ СЃ РїРѕРІС‚РѕСЂРµРЅРёРµРј\n");
+    printf("7. Р’С‹Р±СЂР°С‚СЊ СЌР»РµРјРµРЅС‚ РІ С…СЌС€-С‚Р°Р±Р»РёС†Рµ С†РµРїРѕС‡РєРѕР№\n");
+    printf("8. Р”РѕР±Р°РІРёС‚СЊ СЌР»РµРјРµРЅС‚\n");
+    printf("9. РЈРґР°Р»РёС‚СЊ СЌР»РµРјРµРЅС‚\n");
+    printf("10. Р’С‹С…РѕРґ\n");
 }
 
-void info(MixTable<string, TPolinom>& tab, const vector<string>& keys) {
+void info(MixTable<string, TPolinom>& tab, string* keys, int size) {
     if (tab.GetSize() != 0)
         cout << "\nSize = " << tab.GetSize() << "\nKeys:";
     else 
         cout << "\nSize = 0"  << "\nKeys:";
 
-    for (int i = 0; i < keys.size(); i++) {
+    for (int i = 0; i < size; i++) {
         cout << "\n" << keys[i];
     }
 }
@@ -52,7 +52,8 @@ int main() {
     TPolinom p;
     TMonom newMonom;
     MixTable<string, TPolinom> t;
-    vector<string> key_arr;
+    string key_arr[999];
+    int i = 0;
     srand(time(NULL));
     string key; 
     int s;
@@ -108,7 +109,7 @@ int main() {
         case 8:
             start = clock();
             key = generate_rand_string();
-            key_arr.push_back(key);
+            key_arr[i++] = key;
             newMonom.SetMonom(
                 rand() % (10 - 1 + 1) + 1,
                 rand() % (10 - 1 + 1) + 1,
@@ -117,17 +118,25 @@ int main() {
             );
             p.AddMonom(newMonom);
             t.Add(key, p);
-            info(t, key_arr);
+            info(t, key_arr, i);
             cout << endl;
             t.print();
             end = clock();
             cout << "\ntime: " << (end - start) / CLOCKS_PER_SEC << endl;
             break;
         case 9:
-            info(t,key_arr);
+            if (t.GetSize() == 0) {
+                cout << "РќРµС‚Сѓ С‚РѕРіРѕ, С‡С‚Рѕ РјРѕР¶РЅРѕ Р±С‹Р»Рѕ Р±С‹ СѓРґР°Р»РёС‚СЊ (в•ЇвЂµв–ЎвЂІ)в•Їпёµв”»в”Ѓв”»" << endl;;
+                break;
+            }
             start = clock();
-            t.Delete(key_arr[key_arr.size() - 1]);
-            key_arr.pop_back();
+            t.Delete(key_arr[i]);
+            key_arr[i] = "";
+            i--;
+            t.print();
+            cout << endl;
+            info(t,key_arr, i);
+            cout << endl;
             end = clock();
             cout << "\ntime: " << (end - start) / CLOCKS_PER_SEC << endl;
             break;
