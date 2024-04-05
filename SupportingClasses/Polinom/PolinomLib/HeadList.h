@@ -1,8 +1,6 @@
 #pragma once
-
 #include "List.h"
 using namespace std;
-
 
 template<class T>
 class THeadList : public TList<T>

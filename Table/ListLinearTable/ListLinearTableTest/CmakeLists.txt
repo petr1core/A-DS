@@ -1,0 +1,6 @@
+file(GLOB hdrs "*.h") 
+file(GLOB srcs "*.cpp")
+add_executable(${ListLinearTableTest} ${srcs} ${hdrs})
+target_link_libraries(${ListLinearTableTest} ${ListLinearTableLib} gtest)
+
+#ListLinear TABLE TEST

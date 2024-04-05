@@ -18,10 +18,18 @@ int main() {
 	t.Insert(1, "(1 good table)");
 	t.Insert(1, "(1 good table)");
 	t.Insert(1, "(1 good table)");
-	cout << t << " " << t.GetSize() << " " << t.GetSize() / 10000.0 << endl << t.Getfullness() << " " << t.GetCount() / (double)t.GetSize() << endl;
+	//12 el-s
+
+	cout << t << "GetSize() = " << t.GetSize() <<
+		" ; GetSize()/MaxSize = " << t.GetSize() / 10000.0 <<
+		endl << "GetFullness() = " << t.Getfullness() << 
+		" ; GetCount()/GetSize() = " <<
+		t.GetCount() / (double)t.GetSize() <<
+		endl;
 
 	t.Delete(1);
 	t.Delete(45);
+	//10 el-s
 	cout << t << endl;
 
 	

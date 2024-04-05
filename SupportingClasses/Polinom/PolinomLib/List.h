@@ -1,5 +1,4 @@
 ﻿#pragma once
-// (╯°□°)╯︵ ┻━┻
 #include <iostream>
 using namespace std;
 
@@ -13,6 +12,17 @@ protected:
 		T value;
 		TNode<T>* pNext;
 
+		TNode<T>* get_next(void) 
+		{
+			return pNext;
+		}
+		bool operator==(const TNode<T>& n) {
+			return (this->value == n.value && this->pNext == n.pNext);
+		}
+		
+		bool operator!=(const TNode<T>& n) {
+			return (this->value != n.value || this->pNext != n.pNext);
+		}
 	};
 
 	TNode<T>* pFirst;			// First cell
@@ -46,29 +56,17 @@ public:
 
 	void Reset(); // установить на начало списка
 	bool IsEnd() const;  // список завершен ?
+	bool IsNextEnd() const;  // список завершен ?
 
 	T GetCurrentItem();
 	T* GetCurrentItemPtr() const;
 	int SetCurrentItem(T item);
 
-	
-	/*class Iterator
-	{
-	private:
-		TNode<T>* curs;
-	public:
-		Iterator() { this->curs = nullptr; }
-		TNode<T>* Get() { return this->curs; }
-		T& operator*() { return t->value; }
-		void operator=(TNode<T>* n) { this->curs = n; }
-		void operator++(int t) { this->curs = this->curs->pNext; }
-		bool operator!=(TNode<T>* n) { return this->curs != n; }
-		bool operator==(TNode<T>* n) { return this->curs == n; }
-
-	};
-	TNode<T>* begin() { return pFirst; }
-	TNode<T>* end() { return (pLast == nullptr) ? pLast : pLast.pNext; }*/
+	bool operator==(const TList<T>& other) const;
+	//bool operator!=(const TList<T>& other) const;
 };
+
+
 
 template<class T>
 TList<T>::TList() {
@@ -153,6 +151,7 @@ int TList<T>::DeleteFirst()
 		pLast = nullptr;
 	delete n;
 	length--;
+	return 0;
 }
 
 template<class T>
@@ -199,6 +198,12 @@ bool TList<T>::IsEnd() const
 {
 	return pCurrent == pStop;
 }
+template<class T>
+bool TList<T>::IsNextEnd() const  // next el is empty???
+{
+	return pCurrent->get_next() == nullptr;
+}
+
 
 template<class T>
 T TList<T>::GetCurrentItem()
@@ -221,4 +226,26 @@ int TList<T>::SetCurrentItem(T item)
 		pCurrent->value = item;
 	}
 	return 0;
+}
+template<class T>
+bool TList<T>::operator==(const TList<T>& other) const {
+	// Check if the lists are of the same length
+	if (length != other.length) {
+		return false;
+	}
+
+	// Compare each element in the lists
+	TNode<T>* node1 = pFirst;
+	TNode<T>* node2 = other.pFirst;
+
+	while (node1 != nullptr && node2 != nullptr) {
+		if (node1->value != node2->value) {
+			return false;
+		}
+		node1 = node1->pNext;
+		node2 = node2->pNext;
+	}
+
+	// If all elements are equal, return true
+	return true;
 }

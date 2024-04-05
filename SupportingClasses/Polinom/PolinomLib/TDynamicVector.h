@@ -1,5 +1,7 @@
 // Динамический вектор - 
 // шаблонный вектор на динамической памяти
+#pragma once
+
 template<typename T>
 class TDynamicVector
 {
