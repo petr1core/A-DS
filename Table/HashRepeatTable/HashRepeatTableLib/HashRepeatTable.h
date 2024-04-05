@@ -102,7 +102,7 @@ int HashRepeatTable<Key, Value>::Insert(Key _key, Value _val)
 		
 	}
 	while (vec[id].key != Key()) {
-		id = (id + 1) % this->maxsize;
+		id = (id + 1) % this->size;
 	}
 	if (vec[id].key == Key()) {
 		repeat_id = id;

@@ -29,6 +29,11 @@ public:
 	bool operator==(const TPolinom& other);
 	bool operator!=(const TPolinom& other);
 	string ToString();
+	friend ostream& operator<<(ostream& os, TPolinom& p)
+	{
+		os << p.ToString();
+		return os;
+	}
 };
 
 TPolinom::TPolinom() : THeadList<TMonom>::THeadList() { }//

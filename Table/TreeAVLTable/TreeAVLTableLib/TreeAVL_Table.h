@@ -34,7 +34,7 @@ public:
 			balance = this.update_balance();
 		}
 
-		void update_balance2()  {
+		void update_balance2()  noexcept {
 			Node* n = this->parent;
 			if (n == nullptr) {
 				if (n->left == this) { this->balance--; }
@@ -45,7 +45,7 @@ public:
 			else { this->balance++; }
 			this->update_balance2();
 		}
-		Node* update_balance()  {
+		Node* update_balance()  noexcept {
 			if (this != nullptr) {
 				this->balance = get_height(this->right) - get_height(this->left);
 				if ((this->balance == 2) || (this->balance == -2)) { this->balancir(); }
@@ -53,11 +53,11 @@ public:
 			}
 			else return this;
 		}
-		int get_height(Node* node)  {
+		int get_height(Node* node) noexcept {
 			if (node == nullptr) return 0;
 			return 1 + max(get_height(node->left), get_height(node->right));
 		}
-		Node* balancir() noexcept {
+		Node* balancir() noexcept{
 			if (this->balance == -2)
 			{
 				if (this->left->balance < 0)
