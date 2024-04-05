@@ -36,12 +36,6 @@ THeadList<T>::THeadList()
 	this->pHead = new TNode<T>();
 	this->pLast = this->pHead;
 	this->pHead->pNext = this->pFirst;
-	
-	/*this->pFirst = this->pHead->GetPointer();
-	this->pCurrent = this->pFirst;
-	this->pStop = new TNode<T>();
-	this->pLast = this->pStop;
-	this->length = 0;*/
 }
 
 template<class T>

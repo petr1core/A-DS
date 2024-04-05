@@ -102,7 +102,7 @@ int LinearArrTable<Key, Value>::GoNext(void)
 template<class Key, class Value>
 Key LinearArrTable<Key, Value>::GetKey(void) const
 {
-	return (curs > -1) ? vec[this->curs].key : nullptr;
+	return (curs > -1) ? vec[this->curs].key : NULL;
 }
 
 template<class Key, class Value>
